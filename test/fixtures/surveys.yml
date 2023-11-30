@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clear_topic_intro: 1
+  clear_direction_intro: 1
+  logical_sequence: 1
+  good_summary_conclusion: 1
+  enough_information: 1
+  free_from_filler: 1
+  filled_time: 1
+  easily_follow: 1
+  presenter_clear_understanding: 1
+  consistent_findings: 1
+  questions_answered: 1
+  effective_visuals: 1
+  legible_visuals: 1
+  proper_grammar: 1
+  visuals_enhance: 1
+  appropriate_timing_visuals: 1
+  clear_delivery: 1
+  effective_body_language: 1
+  eye_contact: 1
+  overall_score: 1
+  comments: MyText
+
+two:
+  clear_topic_intro: 1
+  clear_direction_intro: 1
+  logical_sequence: 1
+  good_summary_conclusion: 1
+  enough_information: 1
+  free_from_filler: 1
+  filled_time: 1
+  easily_follow: 1
+  presenter_clear_understanding: 1
+  consistent_findings: 1
+  questions_answered: 1
+  effective_visuals: 1
+  legible_visuals: 1
+  proper_grammar: 1
+  visuals_enhance: 1
+  appropriate_timing_visuals: 1
+  clear_delivery: 1
+  effective_body_language: 1
+  eye_contact: 1
+  overall_score: 1
+  comments: MyText

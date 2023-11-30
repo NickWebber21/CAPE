@@ -1,0 +1,122 @@
+<%= form_with(model: survey) do |form| %>
+  <% if survey.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+      <ul>
+        <% survey.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :clear_topic_intro, style: "display: block" %>
+    <%= form.number_field :clear_topic_intro %>
+  </div>
+
+  <div>
+    <%= form.label :clear_direction_intro, style: "display: block" %>
+    <%= form.number_field :clear_direction_intro %>
+  </div>
+
+  <div>
+    <%= form.label :logical_sequence, style: "display: block" %>
+    <%= form.number_field :logical_sequence %>
+  </div>
+
+  <div>
+    <%= form.label :good_summary_conclusion, style: "display: block" %>
+    <%= form.number_field :good_summary_conclusion %>
+  </div>
+
+  <div>
+    <%= form.label :enough_information, style: "display: block" %>
+    <%= form.number_field :enough_information %>
+  </div>
+
+  <div>
+    <%= form.label :free_from_filler, style: "display: block" %>
+    <%= form.number_field :free_from_filler %>
+  </div>
+
+  <div>
+    <%= form.label :filled_time, style: "display: block" %>
+    <%= form.number_field :filled_time %>
+  </div>
+
+  <div>
+    <%= form.label :easily_follow, style: "display: block" %>
+    <%= form.number_field :easily_follow %>
+  </div>
+
+  <div>
+    <%= form.label :presenter_clear_understanding, style: "display: block" %>
+    <%= form.number_field :presenter_clear_understanding %>
+  </div>
+
+  <div>
+    <%= form.label :consistent_findings, style: "display: block" %>
+    <%= form.number_field :consistent_findings %>
+  </div>
+
+  <div>
+    <%= form.label :questions_answered, style: "display: block" %>
+    <%= form.number_field :questions_answered %>
+  </div>
+
+  <div>
+    <%= form.label :effective_visuals, style: "display: block" %>
+    <%= form.number_field :effective_visuals %>
+  </div>
+
+  <div>
+    <%= form.label :legible_visuals, style: "display: block" %>
+    <%= form.number_field :legible_visuals %>
+  </div>
+
+  <div>
+    <%= form.label :proper_grammar, style: "display: block" %>
+    <%= form.number_field :proper_grammar %>
+  </div>
+
+  <div>
+    <%= form.label :visuals_enhance, style: "display: block" %>
+    <%= form.number_field :visuals_enhance %>
+  </div>
+
+  <div>
+    <%= form.label :appropriate_timing_visuals, style: "display: block" %>
+    <%= form.number_field :appropriate_timing_visuals %>
+  </div>
+
+  <div>
+    <%= form.label :clear_delivery, style: "display: block" %>
+    <%= form.number_field :clear_delivery %>
+  </div>
+
+  <div>
+    <%= form.label :effective_body_language, style: "display: block" %>
+    <%= form.number_field :effective_body_language %>
+  </div>
+
+  <div>
+    <%= form.label :eye_contact, style: "display: block" %>
+    <%= form.number_field :eye_contact %>
+  </div>
+
+  <div>
+    <%= form.label :overall_score, style: "display: block" %>
+    <%= form.number_field :overall_score %>
+  </div>
+
+  <div>
+    <%= form.label :comments, style: "display: block" %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
