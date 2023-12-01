@@ -53,3 +53,13 @@
     background-color: rgba(150, 0, 122, 0.334);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   }
+
+  .your-class {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+  }

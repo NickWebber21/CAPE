@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
@@ -13,18 +13,19 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
 
-  <%= f.text_field :first, autofocus: true, placeholder: 'First Name' %>
-  <%= f.text_field :last, autofocus: true, placeholder: 'Last Name' %>
-  <%= f.text_field :courses, autofocus: true, placeholder: 'Courses' %>
-  <%= f.text_field :role, autofocus: true, placeholder: 'Role' %>
+  <%= f.text_field :first, autofocus: true, placeholder: 'First Name', required: true %>
+  <%= f.text_field :last, autofocus: true, placeholder: 'Last Name', required: true %>
+  <%# f.text_field :courses, autofocus: true, placeholder: 'Courses', required: true %>
+  <%= f.select :role, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
+  <%= f.select :role, ['Instructor/TA', 'Student', 'Admin', 'Presenter'], { prompt: 'Select a role' }, { class: 'drop-down', required: true } %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

@@ -3,8 +3,9 @@
 <% if user_signed_in? %> 
     <p>
         Welcome, <%= current_user.first %> 
-        <% link_to 'Presentations', presentations_path %>
-        <% link_to 'Evaluations', evaluations_path %>
+    </p>
+    <p>
+        Click <%= link_to 'here', presentations_path %> to view presentations.
     </p>
     
 <% else %>
