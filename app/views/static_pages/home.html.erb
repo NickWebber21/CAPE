@@ -5,9 +5,13 @@
         Welcome, <%= current_user.first %> 
     </p>
     <p>
-        Click <%= link_to 'here', presentations_path %> to view presentations.
+        Click <%= link_to 'here', presentations_path %> to view presentations. 
     </p>
-    
+    <% if current_user.role == 'Student' %>
+        <p>
+            Click <%= link_to 'here', evaluations_path %> to submit evaluations for the presentations.
+        </p>
+    <% end %>
 <% else %>
     <p>
         Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.

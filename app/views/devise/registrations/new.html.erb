@@ -24,7 +24,7 @@
   <%= f.text_field :first, autofocus: true, placeholder: 'First Name', required: true %>
   <%= f.text_field :last, autofocus: true, placeholder: 'Last Name', required: true %>
   <%# f.text_field :courses, autofocus: true, placeholder: 'Courses', required: true %>
-  <%= f.select :role, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
+  <%= f.select :course, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
   <%= f.select :role, ['Instructor/TA', 'Student', 'Admin', 'Presenter'], { prompt: 'Select a role' }, { class: 'drop-down', required: true } %>
 
   <div class="actions">

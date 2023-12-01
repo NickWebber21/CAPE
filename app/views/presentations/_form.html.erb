@@ -13,17 +13,17 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true %>
   </div>
 
   <div>
     <%= form.label :course, style: "display: block" %>
-    <%= form.text_field :course %>
+    <%= form.select :course, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
   </div>
 
   <div>
     <%= form.label :grade, style: "display: block" %>
-    <%= form.number_field :grade %>
+    <%= form.number_field :grade, required: true %>
   </div>
 
   <div>
