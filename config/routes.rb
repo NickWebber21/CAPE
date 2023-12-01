@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   # define other roots
   get 'help', to: 'static_pages#help', as: 'help'
   get 'about', to: 'static_pages#about', as: 'about'
+  get 'presentations', to: 'presentations#index', as: 'presentations_path'
+  get 'evaluations', to: 'evaluations#index', as: 'evaluations_path'
 
 end
