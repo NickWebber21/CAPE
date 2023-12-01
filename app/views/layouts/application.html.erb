@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Proj6Niners</title>
+    <title><%= yield(:title) %> | Proj6Niners</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,16 +10,32 @@
   </head>
 
   <body>
-
+  <%# Header %>
+  <header class="header">
   <% if user_signed_in? %>
-    <p>Welcome, <%= current_user.first %>
-    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
-    </p>
+      <p>Welcome, <%= current_user.first %>
+      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+      </p>
   <% else %>
-    <%= link_to 'Sign In', new_user_session_path %>
-    <%= link_to 'Sign Up', new_user_registration_path %>
+      <%= link_to 'Sign In', new_user_session_path %>
+      <%= link_to 'Sign Up', new_user_registration_path %>
   <% end %>
+  <%# link to the home page, help page and about page%>
+  <%= link_to "Home", root_path %>
+  <%= link_to "Help", help_path %>
+  <%= link_to "About", about_path %>
+  </header>
+
+  
 
     <%= yield %>
+
+  <%# Footer goes here%>
+  <footer class="footer">
+    <%= link_to "Home", root_path %>
+    <%= link_to "Help", help_path %>
+    <%= link_to "About", about_path %>
+  </footer>
+  
   </body>
 </html>
