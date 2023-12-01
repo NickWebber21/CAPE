@@ -13,7 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ @font-face {
+    font-family: 'OpenSans';
+    src: font-url('OpenSans.ttf') format('truetype');
+  }
 
+ * {
+    font-family: 'OpenSans', Arial, sans-serif;
+  }
 
  .footer {
     position: fixed;
@@ -26,11 +33,23 @@
   }
 
   .header {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     width: 100%;
     background-color: rgba(255, 0, 208, 0.334);
     color: black;
     text-align: center;
+  }
+
+  .logged_in {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    border: 2px solid #333; /* Adjust color as needed */
+    border-radius: 15px; /* Adjust as needed to create the "bubbly" effect */
+    text-align: center;
+    padding: 5px;
+    background-color: rgba(150, 0, 122, 0.334);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   }
