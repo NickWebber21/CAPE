@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :presentation_id, style: "display: block" %>
-    <%= form.text_field :presentation_id %>
+    <%= form.text_field :presentation_id, value: @presentation.id, readonly: true %>
   </div>
 
   <div>

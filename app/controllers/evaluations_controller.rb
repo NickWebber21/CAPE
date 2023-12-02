@@ -12,6 +12,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/new
   def new
+    @presentation = Presentation.find(params[:presentation_id])
     @evaluation = Evaluation.new
   end
 

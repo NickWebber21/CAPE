@@ -7,5 +7,7 @@
   <%= link_to "Back to presentations", presentations_path %>
 
   <%= button_to "Destroy this presentation", @presentation, method: :delete %>
+
+  <%= link_to "New Evaluation", new_evaluation_path(presentation_id: @presentation.id) %>
 </div>
 
