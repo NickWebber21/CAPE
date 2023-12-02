@@ -23,23 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_165618) do
   create_table "evaluations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "presentation_id", null: false
-    t.integer "survey_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["presentation_id"], name: "index_evaluations_on_presentation_id"
-    t.index ["survey_id"], name: "index_evaluations_on_survey_id"
-    t.index ["user_id"], name: "index_evaluations_on_user_id"
-  end
-
-  create_table "presentations", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "course", null: false
-    t.integer "grade", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "surveys", force: :cascade do |t|
     t.integer "clear_topic_intro", null: false
     t.integer "clear_direction_intro", null: false
     t.integer "logical_sequence", null: false
@@ -63,6 +46,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_165618) do
     t.text "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["presentation_id"], name: "index_evaluations_on_presentation_id"
+    t.index ["user_id"], name: "index_evaluations_on_user_id"
+  end
+
+  create_table "presentations", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "course", null: false
+    t.integer "grade", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,6 +77,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_165618) do
   add_foreign_key "authors", "presentations"
   add_foreign_key "authors", "users"
   add_foreign_key "evaluations", "presentations"
-  add_foreign_key "evaluations", "surveys"
   add_foreign_key "evaluations", "users"
 end
