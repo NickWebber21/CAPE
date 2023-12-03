@@ -66,6 +66,15 @@ class EvaluationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def evaluation_params
-      params.require(:evaluation).permit(:user_id, :presentation_id, :survey_id)
+      params.require(:evaluation).permit(
+        :user_id, :presentation_id,
+        :clear_topic_intro, :clear_direction_intro, :logical_sequence,
+        :good_summary_conclusion, :enough_information, :free_from_filler,
+        :filled_time, :easily_follow, :presenter_clear_understanding,
+        :consistent_findings, :questions_answered, :effective_visuals,
+        :legible_visuals, :proper_grammar, :visuals_enhance,
+        :appropriate_timing_visuals, :clear_delivery, :effective_body_language,
+        :eye_contact, :overall_score, :comments
+      )
     end
 end

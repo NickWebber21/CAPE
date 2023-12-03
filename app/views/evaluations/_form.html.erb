@@ -13,112 +13,114 @@
 
   <div>
     <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.text_field :user_name, value: "#{current_user.first} #{current_user.last}", readonly: true %>
   </div>
 
   <div>
     <%= form.label :presentation_id, style: "display: block" %>
-    <%= form.text_field :presentation_id, value: @presentation.id, readonly: true %>
+    <%= form.hidden_field :presentation_id, value: @presentation.id %>
+    <%= form.text_field :presentation_title, value: @presentation.title, readonly: true %>
   </div>
 
   <div>
     <%= form.label :clear_topic_intro, style: "display: block" %>
-    <%= form.number_field :clear_topic_intro %>
+    <%= form.collection_radio_buttons :clear_topic_intro, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :clear_direction_intro, style: "display: block" %>
-    <%= form.number_field :clear_direction_intro %>
+    <%= form.collection_radio_buttons :clear_direction_intro, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :logical_sequence, style: "display: block" %>
-    <%= form.number_field :logical_sequence %>
+    <%= form.collection_radio_buttons :logical_sequence, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :good_summary_conclusion, style: "display: block" %>
-    <%= form.number_field :good_summary_conclusion %>
+    <%= form.collection_radio_buttons :good_summary_conclusion, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :enough_information, style: "display: block" %>
-    <%= form.number_field :enough_information %>
+    <%= form.collection_radio_buttons :enough_information, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :free_from_filler, style: "display: block" %>
-    <%= form.number_field :free_from_filler %>
+    <%= form.collection_radio_buttons :free_from_filler, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :filled_time, style: "display: block" %>
-    <%= form.number_field :filled_time %>
+    <%= form.collection_radio_buttons :filled_time, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :easily_follow, style: "display: block" %>
-    <%= form.number_field :easily_follow %>
+    <%= form.collection_radio_buttons :easily_follow, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :presenter_clear_understanding, style: "display: block" %>
-    <%= form.number_field :presenter_clear_understanding %>
+    <%= form.collection_radio_buttons :presenter_clear_understanding, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :consistent_findings, style: "display: block" %>
-    <%= form.number_field :consistent_findings %>
+    <%= form.collection_radio_buttons :consistent_findings, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :questions_answered, style: "display: block" %>
-    <%= form.number_field :questions_answered %>
+    <%= form.collection_radio_buttons :questions_answered, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :effective_visuals, style: "display: block" %>
-    <%= form.number_field :effective_visuals %>
+    <%= form.collection_radio_buttons :effective_visuals, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :legible_visuals, style: "display: block" %>
-    <%= form.number_field :legible_visuals %>
+    <%= form.collection_radio_buttons :legible_visuals, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :proper_grammar, style: "display: block" %>
-    <%= form.number_field :proper_grammar %>
+    <%= form.collection_radio_buttons :proper_grammar, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :visuals_enhance, style: "display: block" %>
-    <%= form.number_field :visuals_enhance %>
+    <%= form.collection_radio_buttons :visuals_enhance, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :appropriate_timing_visuals, style: "display: block" %>
-    <%= form.number_field :appropriate_timing_visuals %>
+    <%= form.collection_radio_buttons :appropriate_timing_visuals, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :clear_delivery, style: "display: block" %>
-    <%= form.number_field :clear_delivery %>
+    <%= form.collection_radio_buttons :clear_delivery, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :effective_body_language, style: "display: block" %>
-    <%= form.number_field :effective_body_language %>
+    <%= form.collection_radio_buttons :effective_body_language, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :eye_contact, style: "display: block" %>
-    <%= form.number_field :eye_contact %>
+    <%= form.collection_radio_buttons :eye_contact, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
     <%= form.label :overall_score, style: "display: block" %>
-    <%= form.number_field :overall_score %>
+    <%= form.collection_radio_buttons :overall_score, (1..5).to_a, :to_s, :to_s %>
   </div>
 
   <div>
