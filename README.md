@@ -1,4 +1,8 @@
-# README
+# Presentation Evaluation 
+
+## Description
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -17,10 +21,9 @@ Things you may want to cover:
 
 
 # TODO:
-- Due date is required? This is good for unqiue presentation records but 
 - Complete README
 - Students create/edit evaluations links are broken
-- When displaying the entire tables, it would be better to also display the primary key `id` to differentiate between records with same data.
+- When displaying the entire tables, it would be nice to also display the primary key `id` to differentiate between records with same data. This may be unnecessary though
 - Currently, new evaluations are filled out with the User filling out the evaluation but there is no way to associate presenters with the presentation
     - Authors table is going to fix this
     - MAKE `user_id` and `presentation_id` unique in both Authors and Evaluations tables and validate them.
@@ -31,7 +34,7 @@ Things you may want to cover:
     - Needs analytical tools according to rubric
 - See list of evaluations. Note that both Instructors and Students should be able to see all presentations for their class.
     - Instructor should be able to see all evaluations.
-    - Students should only be able to see their own evaluations (ones they filled out)
+    - Students should only be able to see their own evaluations and ones that pertain to their presentations.
 - tests? <-- Mostly unneeded.
 - PRESENTATION!!!!!!!!!!!!!!!!!!!!!!!
 - Optimize page according to Lighthouse :crying emoji:
