@@ -9,11 +9,9 @@
     <% else %>
       <% @presentations.each do |presentation| %>
         <%= render presentation %>
-        <% if current_user.role == 'Instructor/TA' %>
           <p>
             <%= link_to "Show this presentation", presentation %>
           </p>
-        <% end %>
       <% end %>
     <% end %>
 </div>

@@ -5,19 +5,65 @@
         <p>
             Welcome, <%= current_user.first %> 
         </p>
+        <hr>
         <p>
             Click <%= link_to 'here', presentations_path %> to view presentations. 
         </p>
         <% if current_user.role == 'Student' %>
+            <hr>
             <p>
-                Click <%= link_to 'here', evaluations_path %> to submit evaluations for the presentations.
+                Here are the average evaluations for your presentations:
             </p>
+                    <p>
+            Click <%= link_to 'here', edit_user_registration_path %> to edit your account.
+            </p>
+        <%else%>
+            <p>
+                To create an presentation, click <%= link_to 'here', new_presentation_path %>.
+            </p>
+            <hr>
+            <p>
+                Click <%= link_to 'here', evaluations_path %> to see all evaluations for all presentations.
+            </p>
+            <hr>
+            <p>
+                Click <%= link_to 'here', users_path %> to see users and manage enrollements.
+            </p>
+            <hr>
+            <p>
+                Here are the evaluations for all the presentations:
+            </p>
+
+            <% @attribute_averages.each do |presentation, averages| %>
+            <p>Presentation Title: <%= presentation.title %> <%= link_to 'View Presentation', presentation_path(presentation) %></p>
+
+            <table >
+                <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Average</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% averages.each do |attribute, average| %>
+                    <tr>
+                    <td><%= attribute.humanize %></td>
+                    <td><%= number_with_precision(average, precision: 2) %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+                <p>Number of Evaluations: <%= averages['evaluation_count'] %> <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+                
+            <% end %>
         <% end %>
     <% else %>
         <p>
             Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
         </p>
     <% end %>
+
+
 
     <%= image_tag("kitten.jpg", alt: "Photo of a kitty", width: "700") %>
 </div>

@@ -3,11 +3,14 @@
 <%= render @presentation %>
 
 <div>
-  <%= link_to "Edit this presentation", edit_presentation_path(@presentation) %> |
-  <%= link_to "Back to presentations", presentations_path %>
+  <% if current_user.role == 'Instructor/TA' %>
+    <%= link_to "Edit this presentation", edit_presentation_path(@presentation) %> |
+    <%= link_to "Back to presentations", presentations_path %> 
 
-  <%= button_to "Destroy this presentation", @presentation, method: :delete %>
-
-  <%= link_to "New Evaluation", new_evaluation_path(presentation_id: @presentation.id) %>
+    <%= button_to "Destroy this presentation", @presentation, method: :delete %>
+  <% else %>
+    <%= link_to "New Evaluation", new_evaluation_path(presentation_id: @presentation.id) %> | 
+    <%= link_to "Back to presentations", presentations_path %> 
+  <% end %>
 </div>
 
