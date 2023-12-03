@@ -6,52 +6,38 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
 * System dependencies
-
 * Configuration
-
 * Database creation
-
 * Database initialization
-
 * How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
-
 * ...
 
+
 # TODO:
-- Students should be able to make presentations
-- Display list of users and corresponding presentations when making an eval
-- Doesn't look like presenter can create new presentations. 
-- Make email also be called username (Email/Username) since it is used to sign in
-- `static_pages_controller.rb` is doesn't do anything.
+- Due date is required? This is good for unqiue presentation records but 
+- Complete README
+- Students create/edit evaluations links are broken
+- When displaying the entire tables, it would be better to also display the primary key `id` to differentiate between records with same data.
+- Currently, new evaluations are filled out with the User filling out the evaluation but there is no way to associate presenters with the presentation
+    - Authors table is going to fix this
+    - MAKE `user_id` and `presentation_id` unique in both Authors and Evaluations tables and validate them.
+- No easy way for professors to see all evaluations without first clicking to show a presentation, clicking new evaluation, then back to evaluations
 - Flesh out `admin` role
-- TESTS TESTS TESTS TESTS TESTS
+    - Include link to see all tables & records
+    - Possibly include ability to create a new user/presentation/eval
+    - Needs analytical tools according to rubric
+- See list of evaluations. Note that both Instructors and Students should be able to see all presentations for their class.
+    - Instructor should be able to see all evaluations.
+    - Students should only be able to see their own evaluations (ones they filled out)
+- tests? <-- Mostly unneeded.
 - PRESENTATION!!!!!!!!!!!!!!!!!!!!!!!
-- Needs analytical tools according to rubric :(
 - Optimize page according to Lighthouse :crying emoji:
+- To prevent students from being able to identify as instructors/TAs, we can have a table for classes and have students join the class. This will be more complex and so we will only do this if other people do something similar.
 
 Can revise project until December 9th. Need only a demo for presentation. 
-
-## model-setup branch
-- Students can't create evals for presentations or create presentations.
-- It is nice how User and Presentation autofills in create Evaluation form
-- 1-5 ratings are nice for evaluations
-- No easy way to see all evaluations without first clicking on a presentation, clicking new evaluation, then back to evaluations
-- Due date is required?
-- The `evaluations_controller.rb` has nice `@presentation = Presentation.find(params[:presentation_id])` queries that finds it for you.
-
-## nick-styling
-- Beautiful. Keep the cat.
-
-## Questions
-- Do we want survey stuff to be in the evaluations table or a separate surveys table? There will be quite a few merge conflicts due to migration file differences.
-- Final migration files vs. keeping new migration files
-- What roles do we want? Do we need a "Presenter" role in addition to the Instructor/TA and Student roles? Should Students instead be able to create a presentation? Note that Admins should be able to create everything.
 
 # Steps for cloning and running the database
 `git clone ...`
