@@ -32,6 +32,16 @@
   </div>
 
   <div>
+    <%= form.label :selected_authors, style: "display: block" %>
+    <% @users.each do |user| %>
+      <div>
+        <%= form.check_box :selected_authors, { multiple: true }, user.id, nil %>
+        <%= form.label "user_#{user.id}", user.first + " " + user.last %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
