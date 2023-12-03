@@ -13,17 +13,22 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title, required: true %>
+    <%= form.text_field :title, required: true %>*
   </div>
 
   <div>
     <%= form.label :course, style: "display: block" %>
-    <%= form.select :course, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
+    <%= form.select :course, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>*
+  </div>
+
+  <div>
+    <%= form.label :due_date, style: "display: block" %>
+    <%= form.date_field :due_date, required: true %>*
   </div>
 
   <div>
     <%= form.label :grade, style: "display: block" %>
-    <%= form.number_field :grade, required: true %>
+    <%= form.number_field :grade, required: false %>
   </div>
 
   <div>

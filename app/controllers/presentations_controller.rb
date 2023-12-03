@@ -65,6 +65,6 @@ class PresentationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def presentation_params
-      params.require(:presentation).permit(:title, :course, :grade)
+      params.require(:presentation).permit(:title, :course, :due_date, :grade)
     end
 end

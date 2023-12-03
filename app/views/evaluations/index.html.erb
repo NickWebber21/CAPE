@@ -2,13 +2,19 @@
 
 <h1>Evaluations</h1>
 
-<div id="evaluations">
-  <% @evaluations.each do |evaluation| %>
-    <%= render evaluation %>
-    <p>
-      <%= link_to "Show this evaluation", evaluation %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New evaluation", new_evaluation_path %>
+<% if user_signed_in? %>
+  <div id="evaluations">
+    <% @evaluations.each do |evaluation| %>
+      <%= render evaluation %>
+      <p>
+        <%= link_to "Show this evaluation", evaluation %>
+      </p>
+    <% end %>
+  </div>
+
+  <%= link_to "New evaluation", new_evaluation_path %>
+
+<% else %>
+  <p>Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see evaluations.</p>
+<% end %>

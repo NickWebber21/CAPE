@@ -29,6 +29,7 @@ class EvaluationsController < ApplicationController
         format.html { redirect_to evaluation_url(@evaluation), notice: "Evaluation was successfully created." }
         format.json { render :show, status: :created, location: @evaluation }
       else
+        @presentation = Presentation.find(params[:evaluation][:presentation_id].to_i)
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @evaluation.errors, status: :unprocessable_entity }
       end
