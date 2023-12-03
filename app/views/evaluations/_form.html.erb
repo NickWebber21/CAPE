@@ -12,120 +12,180 @@
   <% end %>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>*
+    <%= form.label :user_id, style: "display: block" %>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= form.text_field :user_name, value: "#{current_user.first} #{current_user.last}", readonly: true %>
+    <%= form.text_field :user_name, value: "#{current_user.first} #{current_user.last}", readonly: true %>*
   </div>
 
   <div>
-    <%= form.label :presentation_id, style: "display: block" %>8
+    <%= form.label :presentation_id, style: "display: block" %>
     <%= form.hidden_field :presentation_id, value: @presentation.id %>
-    <%= form.text_field :presentation_title, value: @presentation.title, readonly: true %>
+    <%= form.text_field :presentation_title, value: @presentation.title, readonly: true %>*
   </div>
 
-  <div>
-    <%= form.label :clear_topic_intro, style: "display: block" %>*
-    <%= form.collection_radio_buttons :clear_topic_intro, (1..5).to_a, :to_s, :to_s, required: true %>
+  <h2>Presentaion Organization</h2>
+  <div class= "radio-options">
+
+  <div class= "radio-option">
+    <%= form.label "The introduction gave me a clear idea of the topic", style: "display: block" %>
+    <%= form.collection_radio_buttons :clear_topic_intro, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :clear_direction_intro, style: "display: block" %>*
-    <%= form.collection_radio_buttons :clear_direction_intro, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The introduction gave me a clear idea of the direction the presentation would take", style: "display: block" %>
+    <%= form.collection_radio_buttons :clear_direction_intro,
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :logical_sequence, style: "display: block" %>*
-    <%= form.collection_radio_buttons :logical_sequence, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The presentation presented information in logical, interesting sequence", style: "display: block" %>
+    <%= form.collection_radio_buttons :logical_sequence,
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :good_summary_conclusion, style: "display: block" %>*
-    <%= form.collection_radio_buttons :good_summary_conclusion, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The conclusion did a good job of summarizing the content of the presentation", style: "display: block" %>
+    <%= form.collection_radio_buttons :good_summary_conclusion, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :enough_information, style: "display: block" %>*
-    <%= form.collection_radio_buttons :enough_information, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "Enough essential information was given to allow me to effectively evaluate the topic", style: "display: block" %>
+    <%= form.collection_radio_buttons :enough_information, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :free_from_filler, style: "display: block" %>*
-    <%= form.collection_radio_buttons :free_from_filler, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The presentation was free from irrelevant or filler information", style: "display: block" %>
+    <%= form.collection_radio_buttons :free_from_filler, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :filled_time, style: "display: block" %>*
-    <%= form.collection_radio_buttons :filled_time, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The presentation filled the time allotted", style: "display: block" %>
+    <%= form.collection_radio_buttons :filled_time, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
+  </div>
   </div>
 
-  <div>
-    <%= form.label :easily_follow, style: "display: block" %>*
-    <%= form.collection_radio_buttons :easily_follow, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <h2>Presentaion Content</h2>
+  <div class= "radio-options">
+
+  <div class= "radio-option">
+    <%= form.label "I could easily follow the main points of the presentation", style: "display: block" %>
+    <%= form.collection_radio_buttons :easily_follow, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :presenter_clear_understanding, style: "display: block" %>*
-    <%= form.collection_radio_buttons :presenter_clear_understanding, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The presenter had a clear understanding of the material presented", style: "display: block" %>
+    <%= form.collection_radio_buttons :presenter_clear_understanding, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :consistent_findings, style: "display: block" %>*
-    <%= form.collection_radio_buttons :consistent_findings, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The plans, recommendations and/or conclusions are consistent with the findings", style: "display: block" %>
+    <%= form.collection_radio_buttons :consistent_findings, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :questions_answered, style: "display: block" %>*
-    <%= form.collection_radio_buttons :questions_answered, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "Presenter answers all questions with explanations and elaboration", style: "display: block" %>
+    <%= form.collection_radio_buttons :questions_answered, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
+  </div>
   </div>
 
-  <div>
-    <%= form.label :effective_visuals, style: "display: block" %>*
-    <%= form.collection_radio_buttons :effective_visuals, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <h2>Presentaion Visuals</h2>
+  <div class= "radio-options">
+
+  <div class= "radio-option">
+    <%= form.label "The visuals were effective in enhancing the message", style: "display: block" %>
+    <%= form.collection_radio_buttons :effective_visuals, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :legible_visuals, style: "display: block" %>*
-    <%= form.collection_radio_buttons :legible_visuals, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The visuals were legible and easy to read", style: "display: block" %>
+    <%= form.collection_radio_buttons :legible_visuals, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :proper_grammar, style: "display: block" %>*
-    <%= form.collection_radio_buttons :proper_grammar, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "Visuals were free from grammar and formatting errors", style: "display: block" %>
+    <%= form.collection_radio_buttons :proper_grammar, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :visuals_enhance, style: "display: block" %>*
-    <%= form.collection_radio_buttons :visuals_enhance, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The number of visual aids enhanced the presentation", style: "display: block" %>
+    <%= form.collection_radio_buttons :visuals_enhance, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :appropriate_timing_visuals, style: "display: block" %>*
-    <%= form.collection_radio_buttons :appropriate_timing_visuals, (1..5).to_a, :to_s, :to_s, required: true  %>
+  <div class= "radio-option">
+    <%= form.label "The visuals were displayed for an appropriate time and had no annoying transition effect", style: "display: block" %>
+    <%= form.collection_radio_buttons :appropriate_timing_visuals, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
+  </div>
   </div>
 
-  <div>
-    <%= form.label :clear_delivery, style: "display: block" %>*
-    <%= form.collection_radio_buttons :clear_delivery, (1..5).to_a, :to_s, :to_s, required: true %>
+  <h2>Presentaion Delivery</h2>
+  <div class= "radio-options">
+
+  <div class= "radio-option">
+    <%= form.label "The presenter spoke clearly, was easily heard, and maintained an appropriate talking rate", style: "display: block" %>
+    <%= form.collection_radio_buttons :clear_delivery, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :effective_body_language, style: "display: block" %>*
-    <%= form.collection_radio_buttons :effective_body_language, (1..5).to_a, :to_s, :to_s, required: true %>
+  <div class= "radio-option">
+    <%= form.label "The presenter maintained a good posture and made effective use of hand and body gesture", style: "display: block" %>
+    <%= form.collection_radio_buttons :effective_body_language, 
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
-    <%= form.label :eye_contact, style: "display: block" %>*
-    <%= form.collection_radio_buttons :eye_contact, (1..5).to_a, :to_s, :to_s, required: true %>
+  <div class= "radio-option">
+    <%= form.label "The presenter maintained eye contact with the audience", style: "display: block" %>
+    <%= form.collection_radio_buttons :eye_contact,
+    [[5, 'Strongly Agree'], [4, 'Agree'], [3, 'Indifferent'], [2, 'Disagree'], [1, 'Strongly Disagree']],
+    :first, :last, required: true %>
+  </div>
   </div>
 
-  <div>
-    <%= form.label :overall_score, style: "display: block" %>*
-    <%= form.collection_radio_buttons :overall_score, (1..5).to_a, :to_s, :to_s, required: true%>
+  <h2>Overall, how would you rate the quality of this presentation</h2>
+  <div class= "radio-options">
+
+  <div class= "radio-option">
+    <%= form.label :overall_score, style: "display: block" %>
+    <%= form.collection_radio_buttons :overall_score, 
+    [[5, 'Excellent'], [4, 'Good'], [3, 'Average'], [2, 'Poor'], [1, 'Unsatisfactory']],
+    :first, :last, required: true %>
   </div>
 
-  <div>
+  <div class= "radio-option">
     <%= form.label :comments, style: "display: block" %>
     <%= form.text_area :comments, required: false%>
+  </div>
   </div>
 
   <div>

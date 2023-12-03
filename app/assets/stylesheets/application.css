@@ -33,3 +33,28 @@
     color: #333;
     background-color: #fff;
   }
+  
+  .radio-options {
+    padding: 10px 20px;
+    background-color: lightgray;
+  }
+
+  .radio-options label {
+    display: inline-flex;
+    margin-right: 8%;
+    padding: 5px 10px;
+  }
+
+  .radio-option{
+    padding-top: 20px;
+  }
+
+  h2{
+    margin-bottom: 5px;
+    font-size:xx-large;
+
+  }
+
+  
+  
+ 
