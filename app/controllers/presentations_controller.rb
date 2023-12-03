@@ -13,6 +13,9 @@ class PresentationsController < ApplicationController
   # GET /presentations/new
   def new
     @presentation = Presentation.new
+
+    # Find all users that are in the same course as the current user
+    @users = User.where(courses: current_user.courses)
   end
 
   # GET /presentations/1/edit
@@ -25,6 +28,12 @@ class PresentationsController < ApplicationController
 
     respond_to do |format|
       if @presentation.save
+
+        # Create an author for each selected user
+        @presentation.selected_authors.each do |user_id|
+          Author.create(user_id: user_id, presentation_id: @presentation.id)
+        end
+
         format.html { redirect_to presentation_url(@presentation), notice: "Presentation was successfully created." }
         format.json { render :show, status: :created, location: @presentation }
       else
@@ -65,6 +74,6 @@ class PresentationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def presentation_params
-      params.require(:presentation).permit(:title, :course, :due_date, :grade)
+      params.require(:presentation).permit(:title, :course, :due_date, :grade, :selected_authors => [])
     end
 end
