@@ -1,7 +1,13 @@
 <% provide(:title, "New Evaluation") %>
 <h1>New evaluation</h1>
 
-<%= render "form", evaluation: @evaluation %>
+<% if !@authors.blank? %>
+  <h3>You are an author of this presentation. You cannot evaluate this presentation.</h3>
+<% elsif !@submitted_evaluations.blank? %>
+  <h3>You have already evaluated this presentation. You cannot evaluate this presentation again.</h3>
+<% else %>
+  <%= render "form", evaluation: @evaluation %>
+<% end %>
 
 <br>
 

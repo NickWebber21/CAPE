@@ -18,6 +18,8 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/new
   def new
     @presentation = Presentation.find(params[:presentation_id])
+    @submitted_evaluations = Evaluation.where(user_id: current_user.id, presentation_id: @presentation.id)
+    @authors = Author.where(presentation_id: @presentation.id, user_id: current_user.id)
     @evaluation = Evaluation.new
   end
 
