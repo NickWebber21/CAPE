@@ -15,19 +15,17 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.first %></td>
-        <td><%= user.last %></td>
-        <td><%= user.courses %></td>
-        <td><%= user.role %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if user.courses == current_user.courses%>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.first %></td>
+          <td><%= user.last %></td>
+          <td><%= user.courses %></td>
+          <td><%= user.role %></td>
+          <td><%= link_to 'Show', user %></td>
+          <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Invite New User', new_user_path %>

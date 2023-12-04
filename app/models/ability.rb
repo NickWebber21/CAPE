@@ -11,13 +11,17 @@ class Ability
     case user_role
       when 'Instructor/TA'
         can :manage, :all
+        # Instructors and TAs can read, create, and update evaluations.
+        can [:read, :create, :update], Evaluation
       when 'Student'
         # Students can read presentations.
         can :read, Presentation
-        # Students can read, create, and update evaluations that they own.
-        can [:read, :create, :update], Evaluation do |evaluation|
+        # Students can read and update evaluations that they own.
+        can [:read, :update], Evaluation do |evaluation|
           evaluation.user_id == current_user.id
         end
+        # Students can create evaluations.
+        can [:create], Evaluation
         # Students can read and update their own user profile.
         can [:read, :update], User, id: current_user.id
       end
