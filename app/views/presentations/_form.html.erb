@@ -35,10 +35,8 @@
     <%= form.label :selected_authors, style: "display: block" %>
     <% @users.each do |user| %>
       <div>
-        <%= form.check_box :selected_authors, { multiple: true }, user.id, nil %>
-        
+        <%= check_box_tag 'presentation[selected_authors][]', user.id, @selected_authors.include?(user.id), { multiple: true } %>
         <%= form.label "user_#{user.id}", user.first + " " + user.last %>
-        
       </div>
     <% end %>
   </div>
