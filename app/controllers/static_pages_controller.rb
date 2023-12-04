@@ -21,7 +21,7 @@ class StaticPagesController < ApplicationController
   
     # Get the numeric attributes dynamically from the database columns
     numeric_attributes = Evaluation.columns_hash.select { |_, column| [:integer, :float].include?(column.type) }.keys
-    numeric_attributes -= ['user_id', 'presentation_id', 'comments']
+    numeric_attributes -= ['user_id', 'presentation_id', 'comments', 'id']
   
     presentations.each do |presentation|
       averages[presentation] = {}

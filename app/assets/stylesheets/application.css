@@ -55,6 +55,23 @@
 
   }
 
+  table {
+    border-collapse: collapse;
+    margin-left: 35%;
+    width: 35%;
+  }
+
+  td, th {
+    
+    text-align: left;
+  }
+
+  .display_stats{
+    background-color: lightgray;
+    border-radius: 10px;
+
+  }
+
   
   
  

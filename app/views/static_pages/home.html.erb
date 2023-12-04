@@ -1,35 +1,41 @@
 <% provide(:title, "Home") %>
 <div class="center jumbotron">
-    <h1>Comprehensive Assessment of Presentation Effectiveness (peer and self evaluation)</h1>
+    <h1>Comprehensive Assessment of Presentation Effectiveness</h1>
+    <h2>(peer and self evaluation)</h2>
+    <br>
     <% if user_signed_in? %> 
         <p>
             Welcome, <%= current_user.first %> 
         </p>
         <hr>
-        <p>
-            Click <%= link_to 'here', presentations_path %> to view presentations. 
-        </p>
         <% if current_user.role == 'Student' %>
+            <p>
+                <%= link_to 'View All Presentations', presentations_path %> 
+            </p>
             <hr>
             <p>
                 Your Upcoming Presentations:
 
             </p>
             <% @user_attribute_averages.each do |presentation, averages| %>
-                <p><%= presentation.title %> <%= link_to 'View Presentation', presentation_path(presentation) %></p>
+            <div class= "display_stats">
+                <p><%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 
                 <% if averages['evaluation_count'] == 0%>
-                    <p>You have not been evaluated for this presentation yet.</p>
+                    <p>Evaluations statistics will show up here after your presentation</p>
                 <% else %>
                 <table >
                 <thead>
                 <tr>
-                    <th>Attribute</th>
-                    <th>Average</th>
+                    <th>Quality</th>
+                    <th>Average(out of 5)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <% averages.each do |attribute, average| %>
+                    <% if attribute.humanize == "Evaluation count" %>
+                        <% next %>
+                    <%end%>
                     <tr>
                     <td><%= attribute.humanize %></td>
                     <td><%= number_with_precision(average, precision: 2) %></td>
@@ -37,8 +43,8 @@
                 <% end %>
                 </tbody>
             </table>
-                <p>Number of Evaluations: <%= averages['evaluation_count'] %> <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
-                
+                <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+            </div>
             <% end %>
             <%end%>
 
@@ -51,43 +57,39 @@
 
             <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
         <%else%>
-            <p>
-                To create an presentation, click <%= link_to 'here', new_presentation_path %>.
-            </p>
+            <p><%= link_to 'View All Presentations', presentations_path %> | <%= link_to 'Create a Presentation', new_presentation_path %></p>
             <hr>
-            <p>
-                Click <%= link_to 'here', evaluations_path %> to see all evaluations for all presentations.
-            </p>
+            <p><%= link_to 'See Users and Manage Enrollments', users_path %></p>
             <hr>
-            <p>
-                Click <%= link_to 'here', users_path %> to see users and manage enrollements.
-            </p>
+            <p><%= link_to 'View all Student evaluations', evaluations_path %></p>
             <hr>
-            <p>
-                Here are the evaluations for all the presentations:
-            </p>
+            <p>Here are the evaluations for all the presentations:</p>
 
             <% @attribute_averages.each do |presentation, averages| %>
-            <p>Presentation Title: <%= presentation.title %> <%= link_to 'View Presentation', presentation_path(presentation) %></p>
+            <div class= "display_stats">
+            <p>Presentation Title: <%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 
             <table >
                 <thead>
                 <tr>
-                    <th>Attribute</th>
-                    <th>Average</th>
+                    <th>Quality</th>
+                    <th>Average(out of 5)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <% averages.each do |attribute, average| %>
+                    <% if attribute.humanize == "Evaluation count" %>
+                        <% next %>
+                    <%end%>
                     <tr>
                     <td><%= attribute.humanize %></td>
                     <td><%= number_with_precision(average, precision: 2) %></td>
                     </tr>
                 <% end %>
                 </tbody>
-            </table>
-                <p>Number of Evaluations: <%= averages['evaluation_count'] %> <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
-                
+                </table>
+                <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+                </div>
             <% end %>
         <% end %>
     <% else %>
@@ -95,8 +97,4 @@
             Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
         </p>
     <% end %>
-
-
-
-    <%= image_tag("kitten.jpg", alt: "Photo of a kitty", width: "700") %>
 </div>
