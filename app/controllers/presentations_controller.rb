@@ -4,10 +4,14 @@ class PresentationsController < ApplicationController
   # GET /presentations or /presentations.json
   def index
     @presentations = Presentation.all
+
+    @authors = Author.all
+
   end
 
   # GET /presentations/1 or /presentations/1.json
   def show
+    @authors = Author.all
   end
 
   # GET /presentations/new
@@ -20,6 +24,8 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/1/edit
   def edit
+    # Find all users that are in the same course as the current user
+    @users = User.where(courses: current_user.courses)
   end
 
   # POST /presentations or /presentations.json

@@ -16,6 +16,15 @@
   </p>
 
   <p>
+    <strong>Presenter(s):</strong>
+    <% @authors.each do |author| %>
+      <% if (presentation.id == author.presentation_id)%>
+        <%= author.user.first + " " + author.user.last %>
+      <% end %>
+    <% end %>
+
+
+  <p>
     <strong>Grade:</strong>
     <%= presentation.grade %>
   </p>
