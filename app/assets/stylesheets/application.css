@@ -62,7 +62,6 @@
   }
 
   td, th {
-    
     text-align: left;
   }
 
@@ -72,6 +71,9 @@
 
   }
 
+.lighten{
+  color: darkgray;
+}
   
   
  

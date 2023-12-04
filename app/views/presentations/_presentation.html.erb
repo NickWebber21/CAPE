@@ -19,7 +19,7 @@
     <strong>Presenter(s):</strong>
     <% @authors.each do |author| %>
       <% if (presentation.id == author.presentation_id)%>
-        <%= author.user.first + " " + author.user.last %>
+        -<%= author.user.first + " " + author.user.last %>
       <% end %>
     <% end %>
 
