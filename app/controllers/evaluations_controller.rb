@@ -4,8 +4,10 @@ class EvaluationsController < ApplicationController
   # GET /evaluations or /evaluations.json
   def index
     @evaluations = Evaluation.all
-    @presentation = Presentation.find(params[:presentation_id])
-    @evaluations = @presentation.evaluations
+    if params[:presentation_id]
+      @presentation = Presentation.find(params[:presentation_id])
+      @evaluations = @presentation.evaluations
+    end
   end
 
   # GET /evaluations/1 or /evaluations/1.json
