@@ -1,7 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
+    if signed_in?
+    @user_presentations = Author.where(user_id: current_user.id).map(&:presentation)
+    @user_attribute_averages = calculate_attribute_averages(@user_presentations)
     @presentations = Presentation.all.includes(:evaluations)
     @attribute_averages = calculate_attribute_averages(@presentations)
+    end
   end
 
   def help

@@ -12,11 +12,44 @@
         <% if current_user.role == 'Student' %>
             <hr>
             <p>
-                Here are the average evaluations for your presentations:
+                Your Upcoming Presentations:
+
             </p>
-                    <p>
-            Click <%= link_to 'here', edit_user_registration_path %> to edit your account.
-            </p>
+            <% @user_attribute_averages.each do |presentation, averages| %>
+                <p><%= presentation.title %> <%= link_to 'View Presentation', presentation_path(presentation) %></p>
+
+                <% if averages['evaluation_count'] == 0%>
+                    <p>You have not been evaluated for this presentation yet.</p>
+                <% else %>
+                <table >
+                <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Average</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% averages.each do |attribute, average| %>
+                    <tr>
+                    <td><%= attribute.humanize %></td>
+                    <td><%= number_with_precision(average, precision: 2) %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+                <p>Number of Evaluations: <%= averages['evaluation_count'] %> <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+                
+            <% end %>
+            <%end%>
+
+            <% if @user_presentations.length() == 0 %>
+                <p>
+                    You have no upcoming presentations. 
+                </p>
+            <% end%>
+            <hr>
+
+            <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
         <%else%>
             <p>
                 To create an presentation, click <%= link_to 'here', new_presentation_path %>.

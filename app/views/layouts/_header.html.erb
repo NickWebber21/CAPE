@@ -6,7 +6,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
-          <li>Welcome, <%= current_user.first %>
+          <li>User: <%= current_user.first %>
             <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-primary" %>
           </li>
         </ul>
