@@ -18,35 +18,39 @@
 
             </p>
             <% @user_attribute_averages.each do |presentation, averages| %>
-            <div class= "display_stats">
-                <p><%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
+                <% if presentation.course == current_user.courses%>
+                    <div class= "display_stats">
+                        <p><%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 
-                <% if averages['evaluation_count'] == 0%>
-                    <p>Evaluations statistics will show up here after your presentation</p>
-                <% else %>
-                <table >
-                <thead>
-                <tr>
-                    <th>Quality</th>
-                    <th>Average(out of 5)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% averages.each do |attribute, average| %>
-                    <% if attribute.humanize == "Evaluation count" %>
-                        <% next %>
-                    <%end%>
-                    <tr>
-                    <td><%= attribute.humanize %></td>
-                    <td><%= number_with_precision(average, precision: 2) %></td>
-                    </tr>
+                        <% if averages['evaluation_count'] == 0%>
+                            <p>Evaluations statistics will show up here after your presentation</p>
+                        <% else %>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Quality</th>
+                                    <th>Average(out of 5)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% averages.each do |attribute, average| %>
+                                <% if attribute.humanize == "Evaluation count" %>
+                                    <% next %>
+                                <%end%>
+                                <tr>
+                                <td><%= attribute.humanize %></td>
+                                <td><%= number_with_precision(average, precision: 2) %></td>
+                                </tr>
+                            <% end %>
+                            </tbody>
+                        </table>
+                        
+                        <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+                    </div>
                 <% end %>
-                </tbody>
-            </table>
-                <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
-            </div>
             <% end %>
-            <%end%>
+        <%end%>
 
             <% if @user_presentations.length() == 0 %>
                 <p>
@@ -66,6 +70,7 @@
             <p>Here are the evaluations for all the presentations:</p>
 
             <% @attribute_averages.each do |presentation, averages| %>
+            <% if presentation.course == current_user.courses%>
             <div class= "display_stats">
             <p>Presentation Title: <%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 
@@ -90,6 +95,7 @@
                 </table>
                 <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
                 </div>
+            <% end %>
             <% end %>
         <% end %>
     <% else %>

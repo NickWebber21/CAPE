@@ -5,9 +5,7 @@ class PresentationsController < ApplicationController
   # GET /presentations or /presentations.json
   def index
     @presentations = Presentation.all
-
     @authors = Author.all
-
   end
 
   # GET /presentations/1 or /presentations/1.json
@@ -68,9 +66,7 @@ class PresentationsController < ApplicationController
   # DELETE /presentations/1 or /presentations/1.json
   def destroy
     @presentation.destroy
-
-    delete_authors
-
+    
     respond_to do |format|
       format.html { redirect_to presentations_url, notice: "Presentation was successfully destroyed." }
       format.json { head :no_content }
@@ -110,7 +106,6 @@ class PresentationsController < ApplicationController
           end
         end
       end
-
     end
 
     # Create an author for each selected user

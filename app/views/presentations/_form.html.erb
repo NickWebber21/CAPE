@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :course, style: "display: block" %>
-    <%= form.select :course, ['CSE 3901 @ 10:20AM', 'CSE 3901 @ 11:30AM'], { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>*
+    <%= form.text_field :course, value: current_user.courses, readonly: true%>
   </div>
 
   <div>
