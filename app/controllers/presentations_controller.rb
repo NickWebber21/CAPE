@@ -1,5 +1,6 @@
 class PresentationsController < ApplicationController
   before_action :set_presentation, only: %i[ show edit update destroy ]
+  load_and_authorize_resource
 
   # GET /presentations or /presentations.json
   def index

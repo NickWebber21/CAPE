@@ -30,7 +30,6 @@ gem "jbuilder"
 # bootstrap
 gem "bootstrap-sass"
 gem "sassc-rails"
-gem "sprockets-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
