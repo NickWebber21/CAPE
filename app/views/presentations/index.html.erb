@@ -8,11 +8,13 @@
       <p>There are no presentations scheduled.</p>
     <% else %>
       <% @presentations.each do |presentation| %>
+       <% if presentation.course == current_user.course or current_user.role != "Student"%>
         <%= render presentation %>
           <p>
             <%= link_to "Show this presentation", presentation %>
           </p>
           <hr>
+         <%end%> 
       <% end %>
     <% end %>
 </div>
