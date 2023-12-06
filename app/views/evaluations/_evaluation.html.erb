@@ -5,10 +5,14 @@
 <% score_array = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"] %>
 <% rating_array = ["Unsatisfactory", "Poor","Average", "Good", "Excellent"]%>
 
+
+<div class="display_stats ps-5">
+<% if current_user.role != "Student"%>
 <p>
   <strong>User:</strong>
   <%= evaluation.user.first %> <%= evaluation.user.last %>
 </p>
+<%end%>
 
 <p>
   <strong>Presentation:</strong>
@@ -120,4 +124,5 @@
   <%= evaluation.comments %>
 </p>
 
+</div>
 </div>

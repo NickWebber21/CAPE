@@ -9,7 +9,9 @@
     <% @evaluations.each do |evaluation| %>
       <%= render evaluation %>
       <p>
+        <% if current_user.role != "Student"%>
         <%= link_to "Show this evaluation", evaluation %>
+        <%end%>
       </p>
       <hr>
     <% end %>
