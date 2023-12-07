@@ -110,7 +110,11 @@
         <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
     <% else %>
         <p>
-            Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
+            STUDNETS: Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
+        </p>
+        <hr>
+        <p>
+            INSTRUCTORS: Please <%= link_to "Add Class", new_course_path %> to add a course and create an instructor account for that class.
         </p>
     <% end %>
 </div>

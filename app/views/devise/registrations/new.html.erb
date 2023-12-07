@@ -21,10 +21,34 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
 
-  <%= f.text_field :first, autofocus: true, placeholder: 'First Name', required: true %>
-  <%= f.text_field :last, autofocus: true, placeholder: 'Last Name', required: true %>
-  <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
-  <%= f.select :role, ['Instructor/TA', 'Student'], { prompt: 'Select a role' }, { class: 'drop-down', required: true } %>
+  <br>
+
+  <div class="field">
+    <%= f.text_field :first, autofocus: true, placeholder: 'First Name', required: true %>
+    <%= f.text_field :last, autofocus: true, placeholder: 'Last Name', required: true %>
+  </div>
+
+  <br>
+
+  <div class="field">
+  <% if @course == nil%>
+    <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
+  <%else%>
+    <% @user.course_id = params[:course_id] %>
+    <strong> Course: </strong><%= @course.name%>
+  <%end%>
+  </div>
+
+  <br>
+
+  <div class="field">
+
+    
+    <strong> Role: </strong><%= f.select :role, options_for_select(['Instructor/TA', 'Student'], selected: @role), { prompt: 'Select a role' }, { class: 'drop-down', required: true, disabled: true } %>
+
+  </div>
+
+  <br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
