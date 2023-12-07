@@ -34,8 +34,9 @@
   <% if @course == nil%>
     <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
   <%else%>
-    <% @user.course_id = params[:course_id] %>
-    <strong> Course: </strong><%= @course.name%>
+    <%= f.hidden_field :course_id, value: params[:course_id]%>
+    <strong> Course: </strong>
+    <span class="badge badge-primary"> <%= @user%> </span>
   <%end%>
   </div>
 
@@ -44,7 +45,8 @@
   <div class="field">
 
     <%= f.hidden_field :role, value: 'Student' %>
-    <span class="badge badge-primary">User</span>
+    <strong> Role: </strong>
+    <span class="badge badge-primary"> <%= @role%> </span>
 
   </div>
 
