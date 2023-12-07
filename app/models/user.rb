@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :evaluations, dependent: :destroy
   has_many :authors, dependent: :destroy
   has_many :presentations, through: :authors
+  belongs_to :course
 end

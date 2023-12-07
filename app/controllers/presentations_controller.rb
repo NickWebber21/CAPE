@@ -18,16 +18,21 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.new
 
     # Find all users that are in the same course as the current user
-    @users = User.where(courses: current_user.courses)
+    @users = User.all
+    #@users = User.where(course_id: current_user.course)
 
     # Initialize selected authors to empty array
     @selected_authors = []
+
+    Rails.logger.info "@users: #{@users.inspect}"
+
   end
 
   # GET /presentations/1/edit
   def edit
     # Find all users that are in the same course as the current user
-    @users = User.where(courses: current_user.courses)
+    @users = User.all
+    #@users = User.where(course_id: current_user.course)
 
     # Find all authors for the presentation
     @selected_authors = Author.where(presentation_id: @presentation.id).pluck(:user_id)
@@ -81,7 +86,7 @@ class PresentationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def presentation_params
-      params.require(:presentation).permit(:title, :course, :due_date, :grade, :selected_authors => [])
+      params.require(:presentation).permit(:title, :course_id, :due_date, :grade, :selected_authors => [])
     end
 
     # Update the selected authors for a presentation.

@@ -18,7 +18,7 @@
 
             </p>
             <% @user_attribute_averages.each do |presentation, averages| %>
-                <% if presentation.course == current_user.courses%>
+                <% if presentation.course == current_user.course%>
                     <div class= "display_stats">
                         <p><%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 
@@ -63,6 +63,10 @@
             <hr>
 
             <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
+
+
+
+
         <%else%>
             <p><%= link_to 'View All Presentations', presentations_path %> | <%= link_to 'Create a Presentation', new_presentation_path %></p>
             <hr>
@@ -73,7 +77,7 @@
             <p>Here are the evaluations for all the presentations:</p>
 
             <% @attribute_averages.each do |presentation, averages| %>
-            <% if presentation.course == current_user.courses%>
+            <% if presentation.course == current_user.course%>
             <div class= "display_stats">
             <p>Presentation Title: <%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
 

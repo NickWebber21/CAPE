@@ -17,8 +17,9 @@
   </div>
 
   <div>
-    <%= form.label :course, style: "display: block" %>
-    <%= form.text_field :course, value: current_user.courses, readonly: true%>
+    <%= form.label :course_id, style: "display: block" %>
+    <%= form.hidden_field :course_id, value: current_user.course_id %>
+    <%= form.text_field :course_name, value: current_user.course.name, readonly: true%>
   </div>
 
   <div>

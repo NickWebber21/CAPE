@@ -8,7 +8,7 @@
       <p>There are no presentations scheduled.</p>
     <% else %>
       <% @presentations.each do |presentation| %>
-       <% if presentation.course == current_user.courses %>
+       <% if presentation.course == current_user.course %>
         <%= render presentation %>
           <p>
             <%= link_to "Show this presentation", presentation %>
@@ -20,10 +20,10 @@
 </div>
 
 <% if current_user.role == 'Instructor/TA' %>
-  <%= link_to "New presentation", new_presentation_path %>
+  <p><%= link_to "New presentation", new_presentation_path %> </p>
 <% end %>
 
-<%= link_to "Back to Home Page", home_path %>
+ <p><%= link_to "Back to Home Page", home_path %></p>
 
 <% else %>
   <p>Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.</p>
