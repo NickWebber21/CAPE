@@ -43,8 +43,8 @@
 
   <div class="field">
 
-    
-    <strong> Role: </strong><%= f.select :role, options_for_select(['Instructor/TA', 'Student'], selected: @role), { prompt: 'Select a role' }, { class: 'drop-down', required: true, disabled: true } %>
+    <%= f.hidden_field :role, value: 'Student' %>
+    <span class="badge badge-primary">User</span>
 
   </div>
 
