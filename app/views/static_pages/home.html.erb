@@ -102,9 +102,12 @@
                 </table>
                 <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
                 </div>
+                <br>
             <% end %>
             <% end %>
         <% end %>
+        <hr>
+        <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
     <% else %>
         <p>
             Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.

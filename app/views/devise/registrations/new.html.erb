@@ -23,7 +23,6 @@
 
   <%= f.text_field :first, autofocus: true, placeholder: 'First Name', required: true %>
   <%= f.text_field :last, autofocus: true, placeholder: 'Last Name', required: true %>
-  <%# f.text_field :courses, autofocus: true, placeholder: 'Courses', required: true %>
   <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
   <%= f.select :role, ['Instructor/TA', 'Student'], { prompt: 'Select a role' }, { class: 'drop-down', required: true } %>
 

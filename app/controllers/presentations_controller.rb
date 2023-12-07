@@ -18,8 +18,7 @@ class PresentationsController < ApplicationController
     @presentation = Presentation.new
 
     # Find all users that are in the same course as the current user
-    @users = User.all
-    #@users = User.where(course_id: current_user.course)
+    @users = User.where(course_id: current_user.course)
 
     # Initialize selected authors to empty array
     @selected_authors = []
@@ -31,8 +30,7 @@ class PresentationsController < ApplicationController
   # GET /presentations/1/edit
   def edit
     # Find all users that are in the same course as the current user
-    @users = User.all
-    #@users = User.where(course_id: current_user.course)
+    @users = User.where(course_id: current_user.course)
 
     # Find all authors for the presentation
     @selected_authors = Author.where(presentation_id: @presentation.id).pluck(:user_id)
