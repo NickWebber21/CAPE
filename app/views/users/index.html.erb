@@ -23,7 +23,10 @@
           <td><%= user.course.name %></td>
           <td><%= user.role %></td>
           <td><%= link_to 'Show', user %></td>
-          <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%if current_user.role == "Instructor/TA"%>
+            <td><%= button_to 'Change Role', change_role_user_path(user), method: :put %></td>
+            <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
         </tr>
       <% end %>
     <% end %>

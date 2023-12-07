@@ -16,6 +16,16 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'User was successfully deleted.'
   end
 
+  def change_role
+    @user = User.find(params[:id])
+    if @user.role == 'Instructor/TA'
+      @user.update(role: 'Student')
+    else
+      @user.update(role: 'Instructor/TA')
+    end
+    redirect_to users_path, notice: 'User role changed successfully.'
+  end
+
   private
 
   def set_user
@@ -25,4 +35,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first, :last, :password, :course_id, :role)
   end
+
 end
