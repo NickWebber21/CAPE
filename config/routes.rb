@@ -9,14 +9,18 @@ Rails.application.routes.draw do
   end
   resources :authors
   resources :evaluations
-  resources :surveys
   
   devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
 
   resources :users do
-    put 'change_role', on: :member
+    member do
+      put 'change_role'
+    end
+    collection do
+      get 'new_user'
+    end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

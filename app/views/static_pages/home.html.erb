@@ -13,10 +13,10 @@
                 <%= link_to 'View All Presentations', presentations_path %> 
             </p>
             <hr>
-            <p>
+            <h3><strong>
                 Your Upcoming Presentations:
 
-            </p>
+            </strong></h3>
             <% @user_attribute_averages.each do |presentation, averages| %>
                 <% if presentation.course == current_user.course%>
                     <div class= "display_stats">
@@ -105,9 +105,10 @@
                 <br>
             <% end %>
             <% end %>
+            <hr>
+            <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
         <% end %>
-        <hr>
-        <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
+    
     <% else %>
         <p>
             STUDNETS: Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.

@@ -41,16 +41,14 @@
 
   <br>
 
+
   <div class="field">
-    <% if @role == 'Student' %>
-      <%= f.hidden_field :role, value: 'Student' %>
+    <% if @role != nil %>
+    <%= f.hidden_field :role, value: @role %>
       <strong> Role: </strong>
       <span class="badge badge-primary"> <%= @role%> </span>
-    <% end %>
-    <% if @role == 'Instructor/TA' %>
-      <%= f.hidden_field :role, value: 'Instructor/TA' %>
-      <strong> Role: </strong>
-      <span class="badge badge-primary"> <%= @role%> </span>
+    <% else %>
+      <%= f.select :role, ['Instructor/TA', 'Student'], { prompt: 'Select a role' }, {class: 'drop-down', required: true} %>
     <% end %>
 
   </div>
