@@ -1,16 +1,42 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @presentation %>
+<div class="d-flex gap-3">
+  <%= link_to "Back to presentations", presentations_path, class: "presentations-back-button presentation-button" %>
 
-<div>
   <% if current_user.role == 'Instructor/TA' %>
-    <%= link_to "Edit this presentation", edit_presentation_path(@presentation) %> |
-    <%= link_to "Back to presentations", presentations_path %> 
-
-    <%= button_to "Destroy this presentation", @presentation, method: :delete %>
+    <%= link_to "Edit this presentation", edit_presentation_path(@presentation), class: "presentations-edit-button presentation-button" %>
+    <%= button_to "Destroy this presentation", @presentation, method: :delete, class: "presentations-delete-button presentation-button"%>
   <% else %>
-    <%= link_to "New Evaluation", new_evaluation_path(presentation_id: @presentation.id) %> | 
-    <%= link_to "Back to presentations", presentations_path %> 
+    <%= link_to 'Evaluate', new_evaluation_path(presentation_id: @presentation.id), class: "presentation-button new-evaluation-button" %>
   <% end %>
 </div>
 
+<h3 class="bold">Presentation:</h3>
+<%= render @presentation %>
+
+<% if current_user.role == "Instructor/TA" or Author.where(user_id: current_user.id, presentation_id: @presentation.id).exists? %>
+  <h3 class="bold">Evaluation Averages:</h3>
+
+  <% if @evaluations.blank? %>
+    <h4 class="presentation-container">There are no evaluations for this presentation.</h4>
+  <% else %>
+    <% @attribute_averages.each do |presentation, averages| %>
+      <div class= "display_stats">
+        <h4>Number of Evaluations: <%= averages['evaluation_count'] %></h4>
+
+        <div class="stats-grid">
+          <h4 class="bold stats-grid-title">Quality</h4>
+          <h4 class="bold stats-grid-title">Average (0-5)</h4>
+
+          <% averages.each do |attribute, average| %>
+            <% if attribute.humanize == "Evaluation count" %>
+              <% next %>
+            <% end %>
+            <p class="stats-item stats-attr"><%= @attribute_labels[attribute] %></p>
+            <p class="stats-item stats-score"><%= number_with_precision(average, precision: 2) %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

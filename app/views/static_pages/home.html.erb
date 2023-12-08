@@ -1,104 +1,81 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
+<div>
     <h1>Comprehensive Assessment of Presentation Effectiveness</h1>
-    <h2>Peer Evaluation Tool</h2>
-    <br>
-    <% if user_signed_in? %> 
-        <p>
-            Welcome, <%= current_user.first %> 
-        </p>
+    <% if user_signed_in? %>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-3">
+                <h3>Welcome, <%= current_user.first %></h3>
+                <span>
+                    Click <%= link_to 'here', edit_user_registration_path %> to edit your account.
+                </span>
+            </div>
+
+            <div class="col-md-9">
+                <h3>
+                    <%= link_to 'Presentations', presentations_path, class: 'bold' %> |
+                    <%= link_to 'Evaluations', evaluations_path, class: 'bold' %> |
+                    <%= link_to 'Roster', users_path, class: 'bold' %>
+                </h3>
+            </div>
+        </div>
+
         <hr>
+
         <% if current_user.role == 'Student' %>
-            <p>
-                <%= link_to 'View All Presentations', presentations_path %> 
-            </p>
-            <hr>
-            <p>
-                Your Upcoming Presentations:
-
-            </p>
-            <% @user_attribute_averages.each do |presentation, averages| %>
-                <% if presentation.course == current_user.courses%>
-                    <div class= "display_stats">
-                        <p><%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
-
-                        <% if averages['evaluation_count'] == 0%>
-                            <p>Evaluations statistics will show up here after your presentation</p>
+            <h3 class="bold"><%= current_user.first %>'s Upcoming Presentations:</h3>
+            <% if @user_presentations.blank? %>
+                <h4 class="presentation-container">You have no upcoming presentations.</h4>
+            <% else %>
+                <div class="d-flex flex-col gap-3">
+                    <% @user_presentations.each do |presentation| %>
+                        <div class="presentation-container d-flex align-items-center">
+                            <div class="col-md-11 d-flex align-items-center gap-3">
+                                <h4 class="bold"><%= presentation.title %></h4>
+                                <span><%= presentation.due_date %></span>
                             </div>
-                        <% else %>
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Quality</th>
-                                    <th>Average(out of 5)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <% averages.each do |attribute, average| %>
-                                <% if attribute.humanize == "Evaluation count" %>
-                                    <% next %>
-                                <%end%>
-                                <tr>
-                                <td><%= attribute.humanize %></td>
-                                <td><%= number_with_precision(average, precision: 2) %></td>
-                                </tr>
-                            <% end %>
-                            </tbody>
-                        </table>
-                        
-                        <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
-                    </div>
-                    <br>
-                <% end %>
-            <% end %>
-        <%end%>
-
-            <% if @user_presentations.length() == 0 %>
-                <p>
-                    You have no upcoming presentations. 
-                </p>
-            <% end%>
-
-            <hr>
-
-            <p>Click <%= link_to 'here', edit_user_registration_path %> to edit your account.</p>
-        <%else%>
-            <p><%= link_to 'View All Presentations', presentations_path %> | <%= link_to 'Create a Presentation', new_presentation_path %></p>
-            <hr>
-            <p><%= link_to 'See Users and Manage Enrollments', users_path %></p>
-            <hr>
-            <p><%= link_to 'View all Student evaluations', evaluations_path %></p>
-            <hr>
-            <p>Here are the evaluations for all the presentations:</p>
-
-            <% @attribute_averages.each do |presentation, averages| %>
-            <% if presentation.course == current_user.courses%>
-            <div class= "display_stats">
-            <p>Presentation Title: <%= presentation.title %> | <%= link_to 'View Presentation', presentation_path(presentation) %></p>
-
-            <table >
-                <thead>
-                <tr>
-                    <th>Quality</th>
-                    <th>Average(out of 5)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% averages.each do |attribute, average| %>
-                    <% if attribute.humanize == "Evaluation count" %>
-                        <% next %>
-                    <%end%>
-                    <tr>
-                    <td><%= attribute.humanize %></td>
-                    <td><%= number_with_precision(average, precision: 2) %></td>
-                    </tr>
-                <% end %>
-                </tbody>
-                </table>
-                <p>Number of Evaluations: <%= averages['evaluation_count'] %> | <%= link_to 'View Evaluations For This Presentation', presentation_evaluations_path(presentation) %></p>
+                            
+                            <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+                            <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+                        </div>
+                    <% end %>
                 </div>
             <% end %>
+
+            <h3 class="bold">Other Class Presentations:</h3>
+            <% if @other_presentations.blank? %>
+                <h4 class="presentation-container">There are no other presentations.</h4>
+            <% else %>
+                <div class="d-flex flex-col gap-3">
+                    <% @other_presentations.each do |presentation| %>
+                        <div class="presentation-container d-flex align-items-center">
+                            <div class="col-md-11 d-flex align-items-center gap-3">
+                                <h4 class="bold"><%= presentation.title %></h4>
+                                <span><%= presentation.due_date %></span>
+                            </div>
+                            
+                            <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+                            <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% else %>
+            <h3 class="bold">Upcoming Presentations:</h3>
+            <% if @presentations.blank? %>
+                <h4 class="presentation-container">There are no upcoming presentations.</h4>
+            <% else %>
+                <div class="d-flex flex-col gap-3">
+                    <% @presentations.each do |presentation| %>
+                        <div class="presentation-container d-flex align-items-center">
+                            <div class="col-md-11 d-flex align-items-center gap-3">
+                                <h4 class="bold"><%= presentation.title %></h4>
+                                <span><%= presentation.due_date %></span>
+                            </div>
+                            
+                            <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+                        </div>
+                    <% end %>
+                </div>
             <% end %>
         <% end %>
     <% else %>

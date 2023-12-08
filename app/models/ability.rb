@@ -16,10 +16,17 @@ class Ability
       when 'Student'
         # Students can read presentations.
         can :read, Presentation
+
+        user_authors = Author.where(user_id: current_user.id)
+
         # Students can read and update evaluations that they own.
         can [:read, :update], Evaluation do |evaluation|
           evaluation.user_id == current_user.id
+          evaluation.presentation_id == user_authors.map(&:presentation_id)
         end
+
+        can [:read, :update], Evaluation
+
         # Students can create evaluations.
         can [:create], Evaluation
         # Students can read and update their own user profile.
