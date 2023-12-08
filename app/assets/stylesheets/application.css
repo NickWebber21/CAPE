@@ -62,8 +62,8 @@ h2 {
 
 table {
   border-collapse: collapse;
-  margin-left: 35%;
-  width: 35%;
+  /* margin-left: 35%; */
+  /* width: 35%; */
 }
 
 td,
@@ -73,6 +73,13 @@ th {
 
 .lighten {
   color: darkgray;
+}
+
+.display_table {
+  display: table;
+  width: 100%;
+  
+  text-align: center;
 }
 
 #main {
