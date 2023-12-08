@@ -11,6 +11,36 @@ class PresentationsController < ApplicationController
   # GET /presentations/1 or /presentations/1.json
   def show
     @authors = Author.all
+
+    # Get the evaluations for the presentation.
+    @evaluations = Evaluation.where(presentation_id: @presentation.id)
+
+    # Get the average of each attribute for the presentation.
+    @attribute_averages = calculate_attribute_averages([@presentation])
+
+    # Pass in the full label for each attribute.
+    @attribute_labels = {
+      "clear_topic_intro" => "The introduction gave me a clear idea of the topic.",
+      "clear_direction_intro" => "The introduction gave me a clear idea of the direction the presentation would take.",
+      "logical_sequence" => "The presentation presented information in a logical, interesting sequence.",
+      "good_summary_conclusion" => "The conclusion did a good job of summarizing the content of the presentation.",
+      "enough_information" => "Enough essential information was given to allow me to effectively evaluate the topic.",
+      "free_from_filler" => "The presentation was free from irrelevant or filler information.",
+      "filled_time" => "The presentation filled the time allotted.",
+      "easily_follow" => "I could easily follow the main points of the presentation.",
+      "presenter_clear_understanding" => "The presenter had a clear understanding of the material presented.",
+      "consistent_findings" => "The plans, recommendations, and/or conclusions are consistent with the findings.",
+      "questions_answered" => "Presenter answers all questions with explanations and elaboration.",
+      "effective_visuals" => "The visuals were effective in enhancing the message.",
+      "legible_visuals" => "The visuals were legible and easy to read.",
+      "proper_grammar" => "Visuals were free from grammar and formatting errors.",
+      "visuals_enhance" => "The number of visual aids enhanced the presentation.",
+      "appropriate_timing_visuals" => "The visuals were displayed for an appropriate time and had no annoying transition effect.",
+      "clear_delivery" => "The presenter spoke clearly, was easily heard, and maintained an appropriate talking rate.",
+      "effective_body_language" => "The presenter maintained a good posture and made effective use of hand and body gesture.",
+      "eye_contact" => "The presenter maintained eye contact with the audience.",
+      "overall_score" => "Overall Score"
+    }
   end
 
   # GET /presentations/new
@@ -116,5 +146,23 @@ class PresentationsController < ApplicationController
       @presentation.selected_authors.each do |user_id|
         Author.create(user_id: user_id, presentation_id: @presentation.id)
       end
+    end
+
+    def calculate_attribute_averages(presentations)
+      averages = {}
+
+      # Get the numeric attributes dynamically from the database columns
+      numeric_attributes = Evaluation.columns_hash.select { |_, column| [:integer, :float].include?(column.type) }.keys
+      numeric_attributes -= ['user_id', 'presentation_id', 'comments', 'id']
+
+      presentations.each do |presentation|
+        averages[presentation] = {}
+        numeric_attributes.each do |attribute|
+          averages[presentation][attribute] = presentation.evaluations.average(attribute) || 0
+        end
+        averages[presentation]['evaluation_count'] = presentation.evaluations.count
+      end
+    
+      averages
     end
 end

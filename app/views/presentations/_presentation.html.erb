@@ -1,35 +1,34 @@
 <% provide(:title, "Presentations") %>
 <div id="<%= dom_id presentation %>">
-
-<div class="display_stats">
-  <p>
-    <strong>Title:</strong>
-    <%= presentation.title %>
-  </p>
+  <div class="presentation-container">
+    <h4 class="bold"><%= presentation.title %></h4>
 
   <p>
     <strong>Course:</strong>
     <%= presentation.course.name %>
   </p>
 
-  <p>
-    <strong>Due Date:</strong>
-    <%= presentation.due_date %>
-  </p>
+    <p>
+      <strong>Due Date:</strong>
+      <%= presentation.due_date %>
+    </p>
 
-  <p>
-    <strong>Presenter(s):</strong>
-    <% @authors.each do |author| %>
-      <% if (presentation.id == author.presentation_id)%>
-        -<%= author.user.first + " " + author.user.last %>
+    <p>
+      <strong>Presenter(s):</strong>
+      <% @authors.each do |author| %>
+        <% if (presentation.id == author.presentation_id)%>
+          <%= author.user.first + " " + author.user.last %>
+        <% end %>
       <% end %>
-    <% end %>
 
+    <p>
+      <strong>Grade:</strong>
+      <%= presentation.grade %>
 
-  <p>
-    <strong>Grade:</strong>
-    <%= presentation.grade %>
-  </p>
+      <% if current_user.role == "Instructor/TA" %>
+        <%= link_to 'Add Grade', edit_presentation_path(presentation) %>
+      <% end %>
+    </p>
 
-</div>
+  </div>
 </div>
