@@ -1,7 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
     if signed_in?
+      @all_presentations = Presentation.all
       @user_presentations = Author.where(user_id: current_user.id).map(&:presentation)
+      @user_evaluations = Evaluation.where(user_id: current_user.id)
 
       # Get the presentations that the user has not authored.
       user_prestenations_ids = @user_presentations.map(&:id)

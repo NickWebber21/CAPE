@@ -1,25 +1,29 @@
-<header class="navbar navbar-inverse">
+<header class="navbar navbar-inverse" id="mainnav">
   <div class="container">
     <%= link_to "CAPE", root_path, id: "logo" %>
-    <% if user_signed_in? %>
       <nav>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Help", help_path %></li>
-          <li id="sign-out-button"><%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-primary"%></li>
+          <% if user_signed_in? %>
+            <li id="sign-out-button"><%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-primary"%></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <% end %>
         </ul>
       </nav>
-    <% else %>
-      <nav>
+  </div>
+</header>
+<header class="navbar navbar-inverse" id="subnav">
+  <div class="container">
+    <nav>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "About", about_path %></li>
-          <li><%= link_to "Help", help_path %></li>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to 'Presentations', presentations_path, class: 'bold' %></li>
+          <li><%= link_to 'Evaluations', evaluations_path, class: 'bold' %></li>
+          <li><%= link_to 'Roster', users_path, class: 'bold' %></li>
         </ul>
       </nav>
-    <% end %>
   </div>
 </header>

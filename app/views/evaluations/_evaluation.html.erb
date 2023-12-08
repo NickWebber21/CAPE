@@ -1,128 +1,29 @@
 <% provide(:title, "Evaluations") %>
 
-<div id="<%= dom_id evaluation %>">
-
 <% score_array = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"] %>
 <% rating_array = ["Unsatisfactory", "Poor","Average", "Good", "Excellent"]%>
 
+<div id="<%= dom_id evaluation %>">
+  <div class="presentation-container">
+    <div class="display_stats ps-5">
+      <h4 class="bold"><%= evaluation.presentation.title %></h4>
+      
+      <% if current_user.role != "Student"%>
+        <p>
+          <strong>User:</strong>
+          <%= evaluation.user.first %> <%= evaluation.user.last %>
+        </p>
+      <% end %>
 
-<div class="display_stats ps-5">
-<% if current_user.role != "Student"%>
-<p>
-  <strong>User:</strong>
-  <%= evaluation.user.first %> <%= evaluation.user.last %>
-</p>
-<%end%>
+      <div class="stats-grid">
+        <h4 class="bold stats-grid-title">Quality</h4>
+        <h4 class="bold stats-grid-title">Score (0-5)</h4>
 
-<p>
-  <strong>Presentation:</strong>
-  <%= evaluation.presentation.title %>
-</p>
-
-<p>
-  <strong>Clear Topic Introduction:</strong>
-  <%= score_array[evaluation.clear_topic_intro - 1]%>
-</p>
-
-<p>
-  <strong>Clear Direction Introduction:</strong>
-  <%= score_array[evaluation.clear_direction_intro - 1] %>
-</p>
-
-<p>
-  <strong>Logical Sequence:</strong>
-  <%= score_array[evaluation.logical_sequence - 1] %>
-</p>
-
-<p>
-  <strong>Good Summary Conclusion:</strong>
-  <%= score_array[evaluation.good_summary_conclusion - 1] %>
-</p>
-
-<p>
-  <strong>Enough Information:</strong>
-  <%= score_array[evaluation.enough_information - 1] %>
-</p>
-
-<p>
-  <strong>Free from Filler:</strong>
-  <%= score_array[evaluation.free_from_filler - 1] %>
-</p>
-
-<p>
-  <strong>Filled Time:</strong>
-  <%= score_array[evaluation.filled_time - 1] %>
-</p>
-
-<p>
-  <strong>Easily Follow:</strong>
-  <%= score_array[evaluation.easily_follow - 1] %>
-</p>
-
-<p>
-  <strong>Presenter Clear Understanding:</strong>
-  <%= score_array[evaluation.presenter_clear_understanding - 1] %>
-</p>
-
-<p>
-  <strong>Consistent Findings:</strong>
-  <%= score_array[evaluation.consistent_findings - 1] %>
-</p>
-
-<p>
-  <strong>Questions Answered:</strong>
-  <%= score_array[evaluation.questions_answered - 1] %>
-</p>
-
-<p>
-  <strong>Effective Visuals:</strong>
-  <%= score_array[evaluation.effective_visuals - 1] %>
-</p>
-
-<p>
-  <strong>Legible Visuals:</strong>
-  <%= score_array[evaluation.legible_visuals - 1] %>
-</p>
-
-<p>
-  <strong>Proper Grammar:</strong>
-  <%= score_array[evaluation.proper_grammar - 1] %>
-</p>
-
-<p>
-  <strong>Visuals Enhance:</strong>
-  <%= score_array[evaluation.visuals_enhance - 1] %>
-</p>
-
-<p>
-  <strong>Appropriate Timing Visuals:</strong>
-  <%= score_array[evaluation.appropriate_timing_visuals - 1] %>
-</p>
-
-<p>
-  <strong>Clear Delivery:</strong>
-  <%= score_array[evaluation.clear_delivery  - 1]%>
-</p>
-
-<p>
-  <strong>Effective Body Language:</strong>
-  <%= score_array[evaluation.effective_body_language - 1] %>
-</p>
-
-<p>
-  <strong>Eye Contact:</strong>
-  <%= score_array[evaluation.eye_contact - 1] %>
-</p>
-
-<p>
-  <strong>Overall Score:</strong>
-  <%= rating_array[evaluation.overall_score - 1] %>
-</p>
-
-<p>
-  <strong>Comments:</strong>
-  <%= evaluation.comments %>
-</p>
-
-</div>
+        <% @attribute_labels.each do |attribute, label| %>
+          <p class="stats-item stats-attr"><%= label %></p>
+          <p class="stats-item stats-score"><%= @attribute_values[attribute] %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

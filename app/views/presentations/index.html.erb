@@ -5,25 +5,56 @@
 <% if user_signed_in? %>
   <div id="presentations">
     <% if @presentations.empty? %>
-      <p>There are no presentations scheduled.</p>
+      <h4 class="presentation-container">There are no presentations scheduled.</h4>
     <% else %>
-      <% @presentations.each do |presentation| %>
-       <% if presentation.course == current_user.course %>
-        <%= render presentation %>
-          <p>
-            <%= link_to "Show this presentation", presentation %>
-          </p>
-          <hr>
-         <%end%> 
+      <h3 class="bold"><%= current_user.first %>'s Upcoming Presentations:</h3>
+      <% if @user_presentations.empty? %>
+        <h4 class="presentation-container">You have no presentations scheduled.</h4>
+      <% else %>
+        <% @user_presentations.each do |presentation| %>
+          <div class="d-flex align-items-center">
+            <div class="col-md-10">
+              <%= render presentation %>
+            </div>
+
+            <div class="col-md-2">
+              <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+            </div>
+          </div>
+          <br>
+        <% end %>
+      <% end %>
+
+      <hr>
+
+      <h3 class="bold">Other Upcoming Presentations:</h3>
+      <% if @other_presentations.empty? %>
+        <h4 class="presentation-container">There are no other presentations scheduled.</h4>
+      <% else %>
+        <% @other_presentations.each do |presentation| %>
+          <div class="d-flex align-items-center">
+            <div class="col-md-10">
+              <%= render presentation %>
+            </div>
+
+            <div class="col-md-2 d-flex flex-col gap-3">
+              <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+              <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+            </div>
+          </div>
+          <br>
+        <% end %>
       <% end %>
     <% end %>
-</div>
 
-<% if current_user.role == 'Instructor/TA' %>
-  <p><%= link_to "New presentation", new_presentation_path %> </p>
-<% end %>
+    <hr>
+  </div>
 
- <p><%= link_to "Back to Home Page", home_path %></p>
+  <% if current_user.role == 'Instructor/TA' %>
+    <%= link_to "New presentation", new_presentation_path %>
+  <% end %>
+
+  <%= link_to "Back to Home", home_path, class: "presentations-back-button presentation-button" %>
 
 <% else %>
   <p>Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.</p>

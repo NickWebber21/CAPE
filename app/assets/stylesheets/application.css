@@ -29,6 +29,10 @@ body {
   min-height: 100vh;
 }
 
+h3 {
+  margin-top: 10px;
+}
+
 .your-class {
   width: 100%;
   padding: 10px;
@@ -60,14 +64,21 @@ h2 {
   font-size: xx-large;
 }
 
-table {
-  border-collapse: collapse;
-  /* margin-left: 35%; */
-  /* width: 35%; */
+thead {
+  font-size: 2rem;
+}
+
+th {
+  border: 2px solid black;
+}
+
+td {
+  border: 1px solid black;
 }
 
 td,
 th {
+  padding: 5px;
   text-align: left;
 }
 
@@ -92,6 +103,16 @@ th {
   height: 50px;
   display: flex;
     align-items: center;
+}
+
+#mainnav {
+  margin-bottom: 0px;
+  border: 0;
+}
+
+#subnav {
+  background-color: #303030;
+
 }
 
 .navbar {
@@ -194,4 +215,8 @@ th {
 
 .dnone {
   display: none;
+}
+
+.border-right {
+  border-right: 1px solid black;
 }

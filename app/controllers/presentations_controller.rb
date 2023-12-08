@@ -5,6 +5,11 @@ class PresentationsController < ApplicationController
   # GET /presentations or /presentations.json
   def index
     @presentations = Presentation.all
+
+    # Get both the user's presentations and the other presentations.
+    @user_presentations = Author.where(user_id: current_user.id).map(&:presentation)
+    @other_presentations = Presentation.where.not(id: @user_presentations.map(&:id))
+    
     @authors = Author.all
   end
 

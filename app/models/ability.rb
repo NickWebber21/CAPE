@@ -17,20 +17,20 @@ class Ability
         # Students can read presentations.
         can :read, Presentation
 
-        user_authors = Author.where(user_id: current_user.id)
+        # Students can view all evaluations. The content of the page will be limited.
+        can :index, Evaluation
 
-        # Students can read and update evaluations that they own.
-        can [:read, :update], Evaluation do |evaluation|
-          evaluation.user_id == current_user.id
-          evaluation.presentation_id == user_authors.map(&:presentation_id)
+        # Students can read evaluations that they own or that are associated with a presentation that they authored.
+        can :show, Evaluation do |evaluation|
+          evaluation.user_id == current_user.id || Author.exists?(user_id: current_user.id, presentation_id: evaluation.presentation_id)
         end
-
-        can [:read, :update], Evaluation
 
         # Students can create evaluations.
         can [:create], Evaluation
-        # Students can read and update their own user profile.
-        can [:read, :update], User, id: current_user.id
+
+        # Students can see other users and update their own user profile.
+        can :read, User
+        can :update, User, id: current_user.id
       end
   end
 end
