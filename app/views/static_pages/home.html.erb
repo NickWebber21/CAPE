@@ -3,18 +3,16 @@
     <h1>Comprehensive Assessment of Presentation Effectiveness</h1>
     <% if user_signed_in? %>
         <div class="row d-flex align-items-center">
-            <div class="col-md-3">
+            <div class="col-md-3 border-right">
                 <h3>Welcome, <%= current_user.first %></h3>
                 <span>
                     Click <%= link_to 'here', edit_user_registration_path %> to edit your account.
                 </span>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 d-flex flex-col justify-content-center align-items-center">
                 <h3>
-                    <%= link_to 'Presentations', presentations_path, class: 'bold' %> |
-                    <%= link_to 'Evaluations', evaluations_path, class: 'bold' %> |
-                    <%= link_to 'Roster', users_path, class: 'bold' %>
+                    <%= current_user.courses %>
                 </h3>
             </div>
         </div>
@@ -35,13 +33,34 @@
                             </div>
                             
                             <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
-                            <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
                         </div>
                     <% end %>
                 </div>
             <% end %>
 
-            <h3 class="bold">Other Class Presentations:</h3>
+            <br>
+
+            <h3 class="bold"><%= current_user.first %>'s Evaluations:</h3>
+            <% if @user_evaluations.blank? %>
+                <h4 class="presentation-container">You have not evaluated any presentations.</h4>
+            <% else %>
+                <div class="d-flex flex-col gap-3">
+                    <% @user_evaluations.each do |evaluation| %>
+                        <div class="presentation-container d-flex align-items-center">
+                            <div class="col-md-11 d-flex align-items-center gap-3">
+                                <h4 class="bold"><%= @all_presentations.find(evaluation.presentation_id).title %></h4>
+                                <span>Overall Score: <%= evaluation.overall_score %></span>
+                            </div>
+                            
+                            <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <br>
+
+            <h3 class="bold">Other Upcoming Presentations:</h3>
             <% if @other_presentations.blank? %>
                 <h4 class="presentation-container">There are no other presentations.</h4>
             <% else %>

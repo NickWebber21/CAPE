@@ -1,24 +1,83 @@
-<% provide(:title, "Evaluations") %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Evaluations</h1>
 
 <% if user_signed_in? %>
   <div id="evaluations">
-    <% @evaluations.each do |evaluation| %>
-      <%= render evaluation %>
-      <p>
-        <% if current_user.role != "Student"%>
-        <%= link_to "Show this evaluation", evaluation %>
-        <%end%>
-      </p>
-      <hr>
+    <% if @evaluations.empty? %>
+      <h4 class="presentation-container">There are no evaluations.</h4>
+    <% else %>
+      <% if current_user.role == "Student" %>
+        <h3 class="bold">Evaluations on <%= current_user.first %>'s presentations:</h3>
+        <% if @evaluations_of_user_presentations.empty? %>
+          <h4 class="presentation-container">There are no evaluations on your presentations.</h4>
+        <% else %>
+          <% @evaluations_of_user_presentations.each do |evaluation| %>
+            <div class="d-flex align-items-center">
+              <div class="col-md-10">
+                <div class="presentation-container">
+                  <h4 class="bold"><%= evaluation.presentation.title %></h4>
+                  <p>Overall Score: <%= evaluation.overall_score %></p>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
+              </div>
+            </div>
+
+            <br>
+          <% end %>
+        <% end %>
+
+        <hr>
+
+        <h3 class="bold"><%= current_user.first %>'s evaluations:</h3>
+        <% if @user_evaluations.empty? %>
+          <h4 class="presentation-container">You have not evaluated any presentations.</h4>
+        <% else %>
+          <% @user_evaluations.each do |evaluation| %>
+            <div class="d-flex align-items-center">
+              <div class="col-md-10">
+                <div class="presentation-container">
+                  <h4 class="bold"><%= evaluation.presentation.title %></h4>
+                  <p>Overall Score: <%= evaluation.overall_score %></p>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
+              </div>
+            </div>
+
+            <br>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <h3 class="bold">All evaluations:</h3>
+        <% @evaluations.each do |evaluation| %>
+          <div class="d-flex align-items-center">
+            <div class="col-md-10">
+              <div class="presentation-container">
+                <h4 class="bold"><%= evaluation.presentation.title %></h4>
+                <p>Overall Score: <%= evaluation.overall_score %></p>
+                <p>User: <%= evaluation.user.first %> <% evaluation.user.last %></p>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
+            </div>
+          </div>
+
+          <br>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
-
-   <%= link_to "Back to Home Page", home_path %>
-
-
+  
+  <%= link_to "Back to Home", home_path, class: "presentations-back-button presentation-button" %>
 <% else %>
   <p>Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see evaluations.</p>
 <% end %>

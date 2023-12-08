@@ -1,5 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
+
+<h3 class="bold">Presentation:</h3>
+<%= render @presentation %>
+<br>
+
 <div class="d-flex gap-3">
   <%= link_to "Back to presentations", presentations_path, class: "presentations-back-button presentation-button" %>
 
@@ -11,8 +16,7 @@
   <% end %>
 </div>
 
-<h3 class="bold">Presentation:</h3>
-<%= render @presentation %>
+<hr>
 
 <% if current_user.role == "Instructor/TA" or Author.where(user_id: current_user.id, presentation_id: @presentation.id).exists? %>
   <h3 class="bold">Evaluation Averages:</h3>
@@ -26,7 +30,7 @@
 
         <div class="stats-grid">
           <h4 class="bold stats-grid-title">Quality</h4>
-          <h4 class="bold stats-grid-title">Average (0-5)</h4>
+          <h4 class="bold stats-grid-title">Average Score (0-5)</h4>
 
           <% averages.each do |attribute, average| %>
             <% if attribute.humanize == "Evaluation count" %>
