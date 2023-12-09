@@ -24,10 +24,15 @@
   <div class="container">
     <nav>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Home', root_path, class: 'bold' %></li>
-          <li><%= link_to 'Presentations', presentations_path, class: 'bold' %></li>
-          <li><%= link_to 'Evaluations', evaluations_path, class: 'bold' %></li>
-          <li><%= link_to 'Roster', users_path, class: 'bold' %></li>
+          <%if current_user.role != "Admin"%>
+            <li><%= link_to 'Home', root_path, class: 'bold' %></li>
+            <li><%= link_to 'Presentations', presentations_path, class: 'bold' %></li>
+            <li><%= link_to 'Evaluations', evaluations_path, class: 'bold' %></li>
+            <li><%= link_to 'Roster', users_path, class: 'bold' %></li>
+          <%else%>
+            <li><%= link_to 'Admin Dashboard', admin_root_path, class: 'bold'%></li>
+            <li><%= link_to 'Home', root_path, class: 'bold' %></li>
+          <%end%>
         </ul>
       </nav>
   </div>

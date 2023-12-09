@@ -20,7 +20,7 @@ A User, and Presentation belong to a Course. A Course can have many presentation
 
 #### Devise Users
 
-A User/Registrations controller was created to pass variables to the Devise sign up page. The Users controller was also updated to give the instructor special features like changing the role of a student(makeing them a ta).
+A User/Registrations controller was created to pass variables to the Devise sign up page. The Users controller was also updated to give the instructor special features like changing the role of a student(makeing them a TA).
 
 ### Style Updates
 
@@ -66,7 +66,6 @@ that can be easily digested by a user.
 
 Minor changes were made in various places to update logic, include more information, and add styling.
 
-
 ### CanCanCan
 
 #### Evaluations
@@ -74,7 +73,17 @@ Minor changes were made in various places to update logic, include more informat
 The authorization permissions on Evaluations were changed to ensure that a user can see all of the Evaluations relevent to them -
 the Evaluations they wrote and the evaluations that are on their presentation. Instructors can see all Evaluations.
 
-### TA Role
+#### TA Role
 
 The role of TA was added with the same CanCanCan permissions as an Instructor but with a few minor tweaks. A TA cannot edit the course nor can they edit other users in a class.
 Other than that, they have the same view as an Instructor. 'Instructor/TA' is now called'Instructor'.
+
+### Administrator dashboard
+
+#### Administrate dashboard
+
+A dashboard for the web application was created using administrate. It was updated to show relavant information and serve as a hub for an admin. Here they can view the whole database, edit entries or delete them. 
+
+#### Admin login
+
+The only admin account is created by seeding the database. This is done so no user can make themselves an admin. The credentials are email: admin@admin.com password: adminpassword. The second nav bar will have a link to the admin dashboard.

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
       resources :users
 
       root to: "authors#index"
-    end
+  end
+
   resources :courses
   get 'static_pages/home'
   get 'static_pages/help'

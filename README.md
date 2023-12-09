@@ -100,7 +100,7 @@ Set up your database schema according to the current migration files:
 rails db:migrate
 ```
 
-5. Optional - Seed the Database:
+5. Seed the Database:
 
 If you have seed data, you can populate your database with this data using:
 
@@ -109,6 +109,13 @@ rails db:seed
 ```
 
 The seed data file is located at `db/seeds.rb`
+There is currently information in the `db/seeds.rb` file to create an Admin user. By running 
+
+```bash
+rails db:seed
+```
+
+You create that admin user with the credentials email: admin@admin.com password: adminpassword. Logging into this account will get you acccess to the administrator dashboard to monitor the database and its entries.
 
 ### Updating the Database after Modifying Migrations
 
