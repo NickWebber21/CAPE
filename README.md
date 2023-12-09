@@ -69,12 +69,11 @@ rails db:seed
 This will seed the users database with an admin account. The credentials are email: admin@admin.com password: adminpassword. Admins can use the credentaisl to log in and see the data base and all of its entries.
 This step is optional if you don't want an admin account but it is strongly reccomended to fix large database errors.
 
-7. Once these steps are complete, run 
+7. Once these steps are complete, run the following to create a locally run server with this web application:
 
 ```bash
 rails server
 ```
-to create a locally run server with this web application.
 
 
 ## Modifying the Database
