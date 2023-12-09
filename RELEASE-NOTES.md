@@ -7,6 +7,21 @@ The tool is designed for classroom instructors or TAs to create presentations an
 
 ## Release Notes
 
+### Database Update
+
+#### Courses
+
+Added a new Courses table to record all user courses. An instructor can create a course and then make an account. The only way to create an instructor account now, is to first make a course.
+There is no dropdown option when creating a user.
+
+An instructor can edit or delete a course, deleting all users, presentations, and evaluations under it.
+
+A User, and Presentation belong to a Course. A Course can have many presentations and many users.
+
+#### Devise Users
+
+A User/Registrations controller was created to pass variables to the Devise sign up page. The Users controller was also updated to give the instructor special features like changing the role of a student(makeing them a ta).
+
 ### Style Updates
 
 #### Navbar
@@ -27,11 +42,13 @@ have also been placed alongside content to make navigation easier.
 
 #### Home Page Content
 
-The Home page has been reorganized to more effectively display information. The title has been condensed to a single line,
+The Home Page has been reorganized to more effectively display information. The title has been condensed to a single line,
 while the account settings page has been placed in a welcome message that users can easily access. A user can also easily
 see the class they are enrolled in.
 
 Multiple headers have been added to describe useful information in one area.
+
+Evaluations that a User still needs to fill out has been added to the Home Page.
 
 #### Content Filtering
 
@@ -44,6 +61,7 @@ on their work and the Evaluations that they wrote.
 
 The full-length labels for the evaluation questions, intially only shown on the Evaluation form, are now visible in a full table
 that can be easily digested by a user.
+
 
 ### CanCanCan
 
