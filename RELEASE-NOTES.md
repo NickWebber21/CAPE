@@ -30,7 +30,7 @@ In addition to the original Home, About, and Help pages, the Sign In, Sign Up,
 and Sign Out buttons are now positioned in the navbar.
 
 A second navbar was added to allow for easy navigation between the Presentations,
-Evaluations, and Roster pages.
+Evaluations, and Roster pages. The Home page link was moved to the second nav bar when a user is signed in for better ease of use.
 
 #### Content Boxes
 

@@ -3,6 +3,12 @@
 <h1>Presentations</h1>
 
 <% if user_signed_in? %>
+
+<% if current_user.role == 'Instructor/TA' %>
+    <%= link_to "New presentation", new_presentation_path, class: "presentation-button new-presentation-button" %>
+    <br>
+  <% end %>
+  
   <div id="presentations">
     <% if @presentations.empty? %>
       <h4 class="presentation-container">There are no presentations scheduled.</h4>
@@ -53,11 +59,6 @@
 
     <hr>
   </div>
-
-  <% if current_user.role == 'Instructor/TA' %>
-    <%= link_to "New presentation", new_presentation_path, class: "presentation-button new-presentation-button" %>
-    <br>
-  <% end %>
 
   <%= link_to "Back to Home", home_path, class: "presentations-back-button presentation-button" %>
 

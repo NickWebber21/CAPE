@@ -1,17 +1,21 @@
 <% provide(:title, "Home") %>
 <div>
     <h1 class= "text-center">Comprehensive Assessment of Presentation Effectiveness</h1>
+    <br>
     <% if user_signed_in? %>
         <div class="row d-flex align-items-center">
             <div class="col-md-4 border-right">
-                <h3>Welcome, <%= current_user.first %></h3>
-
+                <%if current_user.role == "Student"%>
+                <div class="d-flex flex-row gap-3">
+                    <h3>Welcome, <%= current_user.first %></h3>
+                    <%= link_to 'Edit Account', edit_user_registration_path, class: "presentations-back-button presentation-button" %>
+                </div>
+                <%elsif current_user.role == "Instructor/TA"%>
                 <div class="d-flex flex-row gap-3">
                     <%= link_to 'Edit Account', edit_user_registration_path, class: "presentations-back-button presentation-button" %>
-                    <%if current_user.role == "Instructor/TA"%>
-                        <%= link_to 'Delete/Edit Course', course_path(current_user.course), method: :delete, data: { confirm: 'Are you sure you want to leave this course?' }, class: 'presentation-button btn-danger' %>
-                    <%end%>
+                    <%= link_to 'Delete/Edit Course', course_path(current_user.course), method: :delete, data: { confirm: 'Are you sure you want to leave this course?' }, class: 'presentation-button btn-danger' %>
                 </div>
+                <%end%>
             </div>
 
             <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
@@ -42,7 +46,8 @@
                 </div>
             <% end %>
 
-            <br>
+            
+            <hr>
 
             <h3 class="bold">Presentations Without Your Evaluations:</h3>
             <% if @presentations_without_evaluation.blank? %>
@@ -64,7 +69,8 @@
                 <br>
             <% end %>
 
-            <br>
+            
+            <hr>
 
             <h3 class="bold"><%= current_user.first %>'s Evaluations:</h3>
             <% if @user_evaluations.blank? %>
@@ -99,7 +105,7 @@
                             </div>
                             
                             <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
-                            <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+                            
                         </div>
                     <% end %>
                 </div>
