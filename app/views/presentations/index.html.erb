@@ -5,7 +5,7 @@
 <% if user_signed_in? %>
 
 <% if current_user.role == 'Instructor/TA' %>
-    <%= link_to "New presentation", new_presentation_path, class: "presentation-button new-presentation-button" %>
+    <%= link_to "New presentation", new_presentation_path, class: "presentations-edit-button presentation-button" %>
     <br>
   <% end %>
   

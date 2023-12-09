@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
 <div>
-    <h1 class= "text-center">Comprehensive Assessment of Presentation Effectiveness</h1>
+    <h1 class= "text-center"><strong>Comprehensive Assessment of Presentation Effectiveness</strong></h1>
     <br>
     <% if user_signed_in? %>
         <div class="row d-flex align-items-center">
@@ -19,9 +19,9 @@
             </div>
 
             <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
-                <h3>
+                <h1>
                     <%= current_user.course.name %>
-                </h3>
+                </h1>
             </div>
         </div>
 
