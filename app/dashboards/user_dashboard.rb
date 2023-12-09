@@ -42,6 +42,7 @@ class UserDashboard < Administrate::BaseDashboard
     course
     email
     authors
+    role
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

@@ -4,7 +4,7 @@
 
 <div>
   <%= link_to "Edit this course", edit_course_path(@course) %> |
-  <%= link_to "Create Instructor Account", new_user_registration_path(role: "Instructor/TA", course: @course) %>
+  <%= link_to "Create Instructor Account", new_user_registration_path(role: "Instructor", course: @course) %>
 
   <%= button_to "Destroy this course", @course, method: :delete %>
 </div>

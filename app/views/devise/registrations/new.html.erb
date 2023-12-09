@@ -50,7 +50,7 @@
       <strong> Role: </strong>
       <span class="badge badge-primary"> <%= @role%> </span>
     <% else %>
-      <%= f.select :role, ['Instructor/TA', 'Student'], { prompt: 'Select a role' }, {class: 'drop-down', required: true} %>
+      <%= f.select :role, ['Instructor', 'Student'], { prompt: 'Select a role' }, {class: 'drop-down', required: true} %>
     <% end %>
 
   </div>

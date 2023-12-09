@@ -10,7 +10,7 @@
       <th>Last</th>
       <th>Course</th>
       <th>Role</th>
-      <% if current_user.role == "Instructor/TA" %>
+      <% if current_user.role == "Instructor" %>
         <th colspan="3"></th>
       <% end %>
     </tr>
@@ -27,14 +27,14 @@
           
           <td><%= user.role %></td>
           <td>
-            <% if (current_user.role != "Student" and user == current_user) or current_user.role == "Instructor/TA"%>
+            <% if (current_user.role != "Instructor" and user == current_user) or current_user.role == "Instructor"%>
               <%= link_to 'Show', user %>
             <% end%>
           </td>
-          <%if current_user.role == "Instructor/TA" and user != current_user%>
+          <%if current_user.role == "Instructor" and user != current_user%>
             <td><%= button_to 'Create/Demote TA', change_role_user_path(user), method: :put %></td>
             <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <%elsif current_user.role == "Instructor/TA"%>
+          <%elsif current_user.role == "Instructor"%>
             <td>Update Student Roles</td>
             <td>Unenroll Students</td>
           <%end%>

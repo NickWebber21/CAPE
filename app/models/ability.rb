@@ -9,7 +9,7 @@ class Ability
     can :read, StaticPagesController
 
     case user_role
-      when 'Instructor/TA'
+      when 'Instructor'
         can :manage, :all
         # Instructors and TAs can read, create, and update evaluations.
         can [:read, :create, :update], Evaluation
