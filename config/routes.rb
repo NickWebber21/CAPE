@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :authors
+      resources :courses
+      resources :evaluations
+      resources :presentations
+      resources :users
+
+      root to: "authors#index"
+    end
   resources :courses
   get 'static_pages/home'
   get 'static_pages/help'
