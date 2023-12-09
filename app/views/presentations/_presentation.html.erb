@@ -27,7 +27,7 @@
       <%= presentation.grade %>
 
       <% if current_user.role == "Instructor/TA" %>
-        <%= link_to 'Add Grade', edit_presentation_path(presentation) %>
+        <%= link_to 'Add/Edit Grade', edit_presentation_path(presentation) %>
       <% end %>
     </p>
     <% end %>

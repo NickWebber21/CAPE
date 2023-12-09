@@ -6,8 +6,12 @@ class StaticPagesController < ApplicationController
       @user_evaluations = Evaluation.where(user_id: current_user.id)
 
       # Get the presentations that the user has not authored.
-      user_prestenations_ids = @user_presentations.map(&:id)
-      @other_presentations = Presentation.where.not(id: user_prestenations_ids)
+      user_presentations_ids = @user_presentations.map(&:id)
+      @other_presentations = Presentation.where.not(id: user_presentations_ids).where(course: current_user.course)
+
+      # Get the presentations that the user has not evaluated.
+      user_evaluations_ids = current_user.evaluations.map(&:presentation_id)
+      @presentations_without_evaluation = Presentation.where.not(id: user_evaluations_ids).where(course: current_user.course).where.not(id: user_presentations_ids)
 
       @user_attribute_averages = calculate_attribute_averages(@user_presentations)
       @presentations = Presentation.all.includes(:evaluations)

@@ -13,6 +13,9 @@ class EvaluationsController < ApplicationController
     @evaluations_of_user_presentations = Evaluation.where(presentation_id: @user_presentations.map(&:id))
 
     @evaluations = Evaluation.all
+    @class_evaluations = Evaluation.joins(:presentation).where(presentations: { course_id: current_user.course_id })
+
+
   end
 
   # GET /evaluations/1 or /evaluations/1.json

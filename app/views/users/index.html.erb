@@ -1,6 +1,6 @@
 <% provide(:title, "Users") %>
 <h1>Course Roster</h1>
-<h3 class="bold"><%= current_user.courses %></h3>
+<h3 class="bold"><%= current_user.course.name %></h3>
 
 <table class= "display_table">
   <thead>
@@ -25,10 +25,17 @@
           <td><%= user.last %></td>
           <td><%= user.course.name %></td>
           <td><%= user.role %></td>
-          <td><%= link_to 'Show', user %></td>
+          <td>
+            <% if (current_user.role == "Student" and user == current_user) or current_user.role == "Instructor/TA"%>
+              <%= link_to 'Show', user %>
+            <% end%>
+          </td>
           <%if current_user.role == "Instructor/TA" and user != current_user%>
             <td><%= button_to 'Create/Demote TA', change_role_user_path(user), method: :put %></td>
             <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%elsif current_user.role == "Instructor/TA"%>
+            <td>Update Student Roles</td>
+            <td>Unenroll Students</td>
           <%end%>
         </tr>
       <% end %>

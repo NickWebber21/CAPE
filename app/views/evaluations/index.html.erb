@@ -17,7 +17,10 @@
               <div class="col-md-10">
                 <div class="presentation-container">
                   <h4 class="bold"><%= evaluation.presentation.title %></h4>
-                  <p>Overall Score: <%= evaluation.overall_score %></p>
+                  <p>Overall Score: <%= evaluation.overall_score %> /5</p>
+                  <% if evaluation.comments != ""%>
+                    <p>Comments: <%= evaluation.comments %></p>
+                  <% end %>
                 </div>
               </div>
 
@@ -56,13 +59,16 @@
 
       <% else %>
         <h3 class="bold">All evaluations:</h3>
-        <% @evaluations.each do |evaluation| %>
+        <% @class_evaluations.each do |evaluation| %>
           <div class="d-flex align-items-center">
             <div class="col-md-10">
               <div class="presentation-container">
                 <h4 class="bold"><%= evaluation.presentation.title %></h4>
                 <p>Overall Score: <%= evaluation.overall_score %></p>
-                <p>User: <%= evaluation.user.first %> <% evaluation.user.last %></p>
+                <p>User: <%= evaluation.user.first %> <%= evaluation.user.last %></p>
+                <% if evaluation.comments != ""%>
+                  <p>Comments: <%= evaluation.comments %></p>
+                <% end %>
               </div>
             </div>
 

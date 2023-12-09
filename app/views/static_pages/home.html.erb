@@ -6,13 +6,13 @@
             <div class="col-md-3 border-right">
                 <h3>Welcome, <%= current_user.first %></h3>
                 <span>
-                    Click <%= link_to 'here', edit_user_registration_path %> to edit your account.
+                <%= link_to 'Edit Account', edit_user_registration_path, class: "presentation-button presentations-back-button" %>
                 </span>
             </div>
 
             <div class="col-md-9 d-flex flex-col justify-content-center align-items-center">
                 <h3>
-                    <%= current_user.courses %>
+                    <%= current_user.course.name %>
                 </h3>
             </div>
         </div>
@@ -40,6 +40,28 @@
 
             <br>
 
+            <h3 class="bold">Presentations Without Your Evaluations:</h3>
+            <% if @presentations_without_evaluation.blank? %>
+                <h4 class="presentation-container">You have no presentations to evaluate</h4>
+            <% else %>
+                <div class="d-flex flex-col gap-3">
+                    <% @presentations_without_evaluation.each do |presentation| %>
+                        <div class="presentation-container d-flex align-items-center">
+                            <div class="col-md-11 d-flex align-items-center gap-3">
+                                <h4 class="bold"><%= presentation.title %></h4>
+                                <span><%= presentation.due_date %></span>
+                            </div>
+                            
+                            <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
+                            <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+                        </div>
+                    <% end %>
+                </div>
+                <br>
+            <% end %>
+
+            <br>
+
             <h3 class="bold"><%= current_user.first %>'s Evaluations:</h3>
             <% if @user_evaluations.blank? %>
                 <h4 class="presentation-container">You have not evaluated any presentations.</h4>
@@ -58,9 +80,9 @@
                 </div>
             <% end %>
 
-            <br>
 
-            <h3 class="bold">Other Upcoming Presentations:</h3>
+        <% else %>
+            <h3 class="bold">Upcoming Presentations:</h3>
             <% if @other_presentations.blank? %>
                 <h4 class="presentation-container">There are no other presentations.</h4>
             <% else %>
@@ -79,33 +101,18 @@
                 </div>
                 <br>
             <% end %>
-        <% else %>
-            <h3 class="bold">Upcoming Presentations:</h3>
-            <% if @presentations.blank? %>
-                <h4 class="presentation-container">There are no upcoming presentations.</h4>
-            <% else %>
-                <div class="d-flex flex-col gap-3">
-                    <% @presentations.each do |presentation| %>
-                        <div class="presentation-container d-flex align-items-center">
-                            <div class="col-md-11 d-flex align-items-center gap-3">
-                                <h4 class="bold"><%= presentation.title %></h4>
-                                <span><%= presentation.due_date %></span>
-                            </div>
-                            
-                            <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
-                        </div>
-                    <% end %>
-                </div>
-            <% end %>
         <% end %>
     
+
+
+
     <% else %>
-        <p>
+        <h3>
             STUDNETS: Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
-        </p>
+        </h3>
         <hr>
-        <p>
+        <h3>
             INSTRUCTORS: Please <%= link_to "Add Class", new_course_path %> to add a course and create an instructor account for that class or <%= link_to 'sign in', new_user_session_path %>.
-        </p>
+        </h3>
     <% end %>
 </div>

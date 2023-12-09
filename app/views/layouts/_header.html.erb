@@ -26,4 +26,12 @@
         </ul>
       </nav>
   </div>
+
+<% if notice != nil and (notice == "Signed in successfully." or notice == "Signed out successfully.")%>
+  <span class= "notice"><%= notice %></span>
+<% elsif alert != nil%>
+  <span class= "alert"><%= alert %></span>
+<% else %>
+  
+<% end %>
 </header>

@@ -39,7 +39,9 @@
 
             <div class="col-md-2 d-flex flex-col gap-3">
               <%= link_to 'View Presentation', presentation_path(presentation), class: "presentation-button view-presentation-button" %>
-              <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+              <% if current_user.role == "Student" %>
+                <%= link_to 'Evaluate', new_evaluation_path(presentation_id: presentation.id), class: "presentation-button new-evaluation-button" %>
+              <% end %>
             </div>
           </div>
           <br>
@@ -51,7 +53,8 @@
   </div>
 
   <% if current_user.role == 'Instructor/TA' %>
-    <%= link_to "New presentation", new_presentation_path %>
+    <%= link_to "New presentation", new_presentation_path, class: "presentation-button new-presentation-button" %>
+    <br>
   <% end %>
 
   <%= link_to "Back to Home", home_path, class: "presentations-back-button presentation-button" %>

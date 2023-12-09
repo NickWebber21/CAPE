@@ -11,9 +11,12 @@
   <% if current_user.role == 'Instructor/TA' %>
     <%= link_to "Edit this presentation", edit_presentation_path(@presentation), class: "presentations-edit-button presentation-button" %>
     <%= button_to "Destroy this presentation", @presentation, method: :delete, class: "presentations-delete-button presentation-button"%>
+    <%= link_to 'View Evaluations', presentation_evaluations_path(@presentation), class: "presentation-button view-presentation-button" %>
+  <% elsif Author.where(user_id: current_user.id, presentation_id: @presentation.id).exists? %>
+    <%= link_to 'View Evaluations', presentation_evaluations_path(@presentation), class: "presentation-button view-presentation-button" %>
   <% else %>
     <%= link_to 'Evaluate', new_evaluation_path(presentation_id: @presentation.id), class: "presentation-button new-evaluation-button" %>
-  <% end %>
+  <%end%>
 </div>
 
 <hr>
@@ -26,7 +29,7 @@
   <% else %>
     <% @attribute_averages.each do |presentation, averages| %>
       <div class= "display_stats">
-        <h4>Number of Evaluations: <%= averages['evaluation_count'] %></h4>
+        <h4>Number of Evaluations: <%= averages['evaluation_count'] %> / <%=@student_count%> </h4>
 
         <div class="stats-grid">
           <h4 class="bold stats-grid-title">Quality</h4>

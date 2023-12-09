@@ -8,7 +8,7 @@ class PresentationsController < ApplicationController
 
     # Get both the user's presentations and the other presentations.
     @user_presentations = Author.where(user_id: current_user.id).map(&:presentation)
-    @other_presentations = Presentation.where.not(id: @user_presentations.map(&:id))
+    @other_presentations = Presentation.where.not(id: @user_presentations.map(&:id)).where(course: current_user.course)
     
     @authors = Author.all
   end
@@ -46,6 +46,8 @@ class PresentationsController < ApplicationController
       "eye_contact" => "The presenter maintained eye contact with the audience.",
       "overall_score" => "Overall Score"
     }
+
+    @student_count = User.where(course: current_user.course, role: 'Student').count
   end
 
   # GET /presentations/new
