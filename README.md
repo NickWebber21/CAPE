@@ -60,6 +60,16 @@ gem install rails
 bin/rails db:migrate
 ```
 
+6. Seed the database. After migrating the database run
+
+```bash
+rails db:seed
+```
+
+This will seed the users database with an admin account. The credentials are email: admin@admin.com password: adminpassword. Admins can use the credentaisl to log in and see the data base and all of its entries.
+This step is optional if you don't want an admin account but it is strongly reccomended to fix large database errors.
+
+
 ## Modifying the Database
 
 ### Dropping and Recreating the Database
@@ -100,7 +110,7 @@ Set up your database schema according to the current migration files:
 rails db:migrate
 ```
 
-5. Seed the Database:
+5. (Optional) Seed the Database:
 
 If you have seed data, you can populate your database with this data using:
 
@@ -109,13 +119,7 @@ rails db:seed
 ```
 
 The seed data file is located at `db/seeds.rb`
-There is currently information in the `db/seeds.rb` file to create an Admin user. By running 
-
-```bash
-rails db:seed
-```
-
-You create that admin user with the credentials email: admin@admin.com password: adminpassword. Logging into this account will get you acccess to the administrator dashboard to monitor the database and its entries.
+There is currently information in the `db/seeds.rb` file to create an Admin user. By running the above command you create that admin user with the credentials email: admin@admin.com password: adminpassword. Logging into this account will get you acccess to the administrator dashboard to monitor the database and its entries.
 
 ### Updating the Database after Modifying Migrations
 
