@@ -1,3 +1,4 @@
+<% provide(:title, "Evaluations") %>
 <p style="color: green"><%= notice %></p>
 
 <h1>Evaluations</h1>
@@ -9,30 +10,34 @@
     <% else %>
       <% if current_user.role == "Student" %>
         <h3 class="bold">Evaluations on <%= current_user.first %>'s presentations:</h3>
-        <% if @evaluations_of_user_presentations.empty? %>
-          <h4 class="presentation-container">There are no evaluations on your presentations.</h4>
-        <% else %>
-          <% @evaluations_of_user_presentations.each do |evaluation| %>
-            <div class="d-flex align-items-center">
-              <div class="col-md-10">
-                <div class="presentation-container">
-                  <h4 class="bold"><%= evaluation.presentation.title %></h4>
-                  <p>Overall Score: <%= evaluation.overall_score %> /5</p>
-                  <% if evaluation.comments != ""%>
-                    <p>Comments: <%= evaluation.comments %></p>
-                  <% end %>
+        <% current_user.presentations.each do |presentation| %>
+          <% evaluations = presentation.evaluations %>
+          <% if evaluations.any? %>
+            <h4 class="bold"><%= presentation.title %></h4>
+            <% evaluations.each do |evaluation| %>
+              <div class="d-flex align-items-center">
+                <div class="col-md-10">
+                  <div class="presentation-container">
+                    <p>Overall Score: <%= evaluation.overall_score %> /5</p>
+                    <% if evaluation.comments.present? %>
+                      <p>Comments: <%= evaluation.comments %></p>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
                 </div>
               </div>
-
-              <div class="col-md-2">
-                <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
-              </div>
-            </div>
-
-            <br>
+              <br>
+            <% end %>
+          <% else %>
+            <h4 class="presentation-container">There are no evaluations on <%= presentation.title %>.</h4>
           <% end %>
         <% end %>
 
+
+        <hr>
         <hr>
 
         <h3 class="bold"><%= current_user.first %>'s evaluations:</h3>
@@ -58,26 +63,30 @@
         <% end %>
 
       <% else %>
-        <h3 class="bold">All evaluations:</h3>
-        <% @class_evaluations.each do |evaluation| %>
-          <div class="d-flex align-items-center">
-            <div class="col-md-10">
-              <div class="presentation-container">
-                <h4 class="bold"><%= evaluation.presentation.title %></h4>
-                <p>Overall Score: <%= evaluation.overall_score %></p>
-                <p>User: <%= evaluation.user.first %> <%= evaluation.user.last %></p>
-                <% if evaluation.comments != ""%>
-                  <p>Comments: <%= evaluation.comments %></p>
-                <% end %>
+        <h3 class="bold">All Evaluations in <%= current_user.course.name %>:</h3>
+        <% current_user.course.presentations.each do |presentation| %>
+          <% evaluations = presentation.evaluations %>
+          <% if evaluations.any? %>
+            <h4 class="bold"><%= presentation.title %></h4>
+            <% evaluations.each do |evaluation| %>
+              <div class="d-flex align-items-center">
+                <div class="col-md-10">
+                  <div class="presentation-container">
+                    <p>Overall Score: <%= evaluation.overall_score %> /5</p>
+                    <% if evaluation.comments.present? %>
+                      <p>Comments: <%= evaluation.comments %></p>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
+                </div>
               </div>
-            </div>
 
-            <div class="col-md-2">
-              <%= link_to 'View Evaluation', evaluation_path(evaluation), class: "presentation-button view-presentation-button" %>
-            </div>
-          </div>
-
-          <br>
+              <br>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

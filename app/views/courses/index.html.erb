@@ -2,6 +2,9 @@
 
 <h1>Courses</h1>
 
+<p>You do not have the credentials to view this page.</p>
+
+<% if current_user.role == "Admin"%>
 <div id="courses">
   <% @courses.each do |course| %>
     <%= render course %>
@@ -10,5 +13,5 @@
     </p>
   <% end %>
 </div>
+<% end %>
 
-<%= link_to "New course", new_course_path %>

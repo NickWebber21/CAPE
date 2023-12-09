@@ -110,3 +110,24 @@ footer {
   color: crimson;
   margin: 30px;
 }
+
+.form-options {
+  padding: 15px; 
+  background-color: lightgray;
+  border-radius: 5px;
+  label {
+  display: inline-flex;
+  padding: 5px 10px;
+  }
+}
+
+.radio-options {
+  padding: 15px; 
+  background-color: lightgray;
+  border-radius: 5px;
+  label {
+    display: inline-flex;
+    margin-right: 10%;
+    padding: 5px 10px;
+  }
+}

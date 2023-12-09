@@ -1,4 +1,5 @@
 class EvaluationsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_evaluation, only: %i[ show edit update destroy ]
   load_and_authorize_resource
 
@@ -7,10 +8,7 @@ class EvaluationsController < ApplicationController
     # Get all evaluations for the user.
     @user_evaluations = Evaluation.where(user_id: current_user.id)
 
-    # Get the presentations that the user has authored.
-    user_authors = Author.where(user_id: current_user.id)
-    @user_presentations = user_authors.map(&:presentation)
-    @evaluations_of_user_presentations = Evaluation.where(presentation_id: @user_presentations.map(&:id))
+
 
     @evaluations = Evaluation.all
     @class_evaluations = Evaluation.joins(:presentation).where(presentations: { course_id: current_user.course_id })

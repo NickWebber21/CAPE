@@ -1,3 +1,5 @@
+
+<div class="form-options">
 <%= form_with(model: course) do |form| %>
   <% if course.errors.any? %>
     <div style="color: red">
@@ -20,3 +22,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

@@ -16,6 +16,8 @@
       </nav>
   </div>
 </header>
+
+<%if user_signed_in?%>
 <header class="navbar navbar-inverse" id="subnav">
   <div class="container">
     <nav>
@@ -26,12 +28,13 @@
         </ul>
       </nav>
   </div>
+</header>
+<% end %>
 
-<% if notice != nil and (notice == "Signed in successfully." or notice == "Signed out successfully.")%>
-  <span class= "notice"><%= notice %></span>
+<% if notice != nil%>
+
 <% elsif alert != nil%>
   <span class= "alert"><%= alert %></span>
 <% else %>
   
 <% end %>
-</header>

@@ -1,16 +1,20 @@
 <% provide(:title, "Home") %>
 <div>
-    <h1>Comprehensive Assessment of Presentation Effectiveness</h1>
+    <h1 class= "text-center">Comprehensive Assessment of Presentation Effectiveness</h1>
     <% if user_signed_in? %>
         <div class="row d-flex align-items-center">
-            <div class="col-md-3 border-right">
+            <div class="col-md-4 border-right">
                 <h3>Welcome, <%= current_user.first %></h3>
-                <span>
-                <%= link_to 'Edit Account', edit_user_registration_path, class: "presentation-button presentations-back-button" %>
-                </span>
+
+                <div class="d-flex flex-row gap-3">
+                    <%= link_to 'Edit Account', edit_user_registration_path, class: "presentations-back-button presentation-button" %>
+                    <%if current_user.role == "Instructor/TA"%>
+                        <%= link_to 'Delete/Edit Course', course_path(current_user.course), method: :delete, data: { confirm: 'Are you sure you want to leave this course?' }, class: 'presentation-button btn-danger' %>
+                    <%end%>
+                </div>
             </div>
 
-            <div class="col-md-9 d-flex flex-col justify-content-center align-items-center">
+            <div class="col-md-8 d-flex flex-col justify-content-center align-items-center">
                 <h3>
                     <%= current_user.course.name %>
                 </h3>
@@ -107,12 +111,15 @@
 
 
     <% else %>
-        <h3>
-            STUDNETS: Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to see all upcoming presentations.
-        </h3>
-        <hr>
-        <h3>
-            INSTRUCTORS: Please <%= link_to "Add Class", new_course_path %> to add a course and create an instructor account for that class or <%= link_to 'sign in', new_user_session_path %>.
-        </h3>
+
+        <div class="login_container">
+            <h3 class="login_header">
+                STUDENTS: Please <a class="link" href="<%= new_user_session_path %>">Sign In</a> or <a class="link" href="<%= new_user_registration_path %>">Sign Up</a> to see all upcoming presentations.
+             </h3>
+            <hr class="separator">
+            <h3 class="log_inheader">
+                INSTRUCTORS: Please <a class="link" href="<%= new_course_path %>">Add Class</a> to add a course and create an instructor account or <a class="link" href="<%= new_user_session_path %>">Sign In</a>.
+            </h3>
+        </div>
     <% end %>
 </div>
