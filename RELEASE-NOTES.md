@@ -77,4 +77,4 @@ the Evaluations they wrote and the evaluations that are on their presentation. I
 ### TA Role
 
 The role of TA was added with the same CanCanCan permissions as an Instructor but with a few minor tweaks. A TA cannot edit the course nor can they edit other users in a class.
-Other than that, they have the same view as an Instructor.
+Other than that, they have the same view as an Instructor. 'Instructor/TA' is now called'Instructor'.

@@ -26,11 +26,13 @@
           <td><%= user.course.name %></td>
           
           <td><%= user.role %></td>
-          <td>
+          
             <% if (current_user.role != "Instructor" and user == current_user) or current_user.role == "Instructor"%>
+            <td>
               <%= link_to 'Show', user %>
+            </td>
             <% end%>
-          </td>
+          
           <%if current_user.role == "Instructor" and user != current_user%>
             <td><%= button_to 'Create/Demote TA', change_role_user_path(user), method: :put %></td>
             <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
