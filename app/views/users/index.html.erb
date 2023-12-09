@@ -24,9 +24,10 @@
           <td><%= user.first %></td>
           <td><%= user.last %></td>
           <td><%= user.course.name %></td>
+          
           <td><%= user.role %></td>
           <td>
-            <% if (current_user.role == "Student" and user == current_user) or current_user.role == "Instructor/TA"%>
+            <% if (current_user.role != "Student" and user == current_user) or current_user.role == "Instructor/TA"%>
               <%= link_to 'Show', user %>
             <% end%>
           </td>
@@ -46,10 +47,4 @@
 
 <br>
 
-
-
-<br>
-<br>
-<br>
-
-<%= link_to "Back to Home Page", home_path %>
+<%= link_to "Back to Home Page", root_path, class: "presentations-back-button presentation-button" %>

@@ -8,7 +8,7 @@
 <div class="d-flex gap-3">
   <%= link_to "Back to presentations", presentations_path, class: "presentations-back-button presentation-button" %>
 
-  <% if current_user.role == 'Instructor/TA' %>
+  <% if current_user.role != 'Student' %>
     <%= link_to "Edit this presentation", edit_presentation_path(@presentation), class: "presentations-edit-button presentation-button" %>
     <%= button_to "Destroy this presentation", @presentation, method: :delete, class: "presentations-delete-button presentation-button"%>
     <%= link_to 'View Evaluations', presentation_evaluations_path(@presentation), class: "presentation-button view-presentation-button" %>
@@ -21,7 +21,7 @@
 
 <hr>
 
-<% if current_user.role == "Instructor/TA" or Author.where(user_id: current_user.id, presentation_id: @presentation.id).exists? %>
+<% if current_user.role != "Student" or Author.where(user_id: current_user.id, presentation_id: @presentation.id).exists? %>
   <h3 class="bold">Evaluation Averages:</h3>
 
   <% if @evaluations.blank? %>

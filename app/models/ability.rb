@@ -13,6 +13,10 @@ class Ability
         can :manage, :all
         # Instructors and TAs can read, create, and update evaluations.
         can [:read, :create, :update], Evaluation
+      when 'TA'
+        can :manage, :all
+        # Instructors and TAs can read, create, and update evaluations.
+        can [:read, :create, :update], Evaluation
       when 'Student'
         # Students can read presentations.
         can :read, Presentation

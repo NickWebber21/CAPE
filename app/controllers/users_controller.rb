@@ -18,10 +18,10 @@ class UsersController < ApplicationController
 
   def change_role
     @user = User.find(params[:id])
-    if @user.role == 'Instructor/TA'
+    if @user.role == 'TA'
       @user.update(role: 'Student')
     else
-      @user.update(role: 'Instructor/TA')
+      @user.update(role: 'TA')
     end
     redirect_to users_path, notice: 'User role changed successfully.'
   end

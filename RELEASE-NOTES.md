@@ -73,3 +73,8 @@ Minor changes were made in various places to update logic, include more informat
 
 The authorization permissions on Evaluations were changed to ensure that a user can see all of the Evaluations relevent to them -
 the Evaluations they wrote and the evaluations that are on their presentation. Instructors can see all Evaluations.
+
+### TA Role
+
+The role of TA was added with the same CanCanCan permissions as an Instructor but with a few minor tweaks. A TA cannot edit the course nor can they edit other users in a class.
+Other than that, they have the same view as an Instructor.

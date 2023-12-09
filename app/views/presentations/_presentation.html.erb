@@ -21,12 +21,12 @@
         <% end %>
       <% end %>
 
-    <% if current_user.role == "Instructor/TA" or current_user.presentations.include?(@presentation)%>
+    <% if current_user.role != "Student" or current_user.presentations.include?(@presentation)%>
       <p>
         <strong>Grade:</strong>
       <%= presentation.grade %>
 
-      <% if current_user.role == "Instructor/TA" %>
+      <% if current_user.role != "Student" %>
         <%= link_to 'Add/Edit Grade', edit_presentation_path(presentation) %>
       <% end %>
     </p>
