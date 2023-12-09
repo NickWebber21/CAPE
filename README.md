@@ -30,19 +30,19 @@ gem install bundler
 git clone https://github.com/cse3901-2023au-1020/proj6-niners.git
 ```
 
-1. Navigate to the project directory
+2. Navigate to the project directory
 
 ```bash
 cd proj6-niners
 ```
 
-1. Install dependencies
+3. Install dependencies
 
 ```bash
 bundle install
 ```
 
-1. Ensure Rails is installed
+4. Ensure Rails is installed
 
 ```bash
 rails -v
@@ -54,7 +54,7 @@ Install if not:
 gem install rails
 ```
 
-1. Configure the database. Upon a clean installation, the database will likely need migration. To do so, perform the following:
+5. Configure the database. Upon a clean installation, the database will likely need migration. To do so, perform the following:
 
 ```bash
 bin/rails db:migrate
@@ -77,14 +77,14 @@ Make sure you have the necessary permissions to perform database operations.
 cd proj6-niners
 ```
 
-1. Drop the Database
+2. Drop the Database
 
 ```bash
 rails db:drop
 ```
 This command will delete the database and all its data
 
-1. Create a New Database
+3. Create a New Database
 
 To create a new, empty database, run:
 
@@ -92,7 +92,7 @@ To create a new, empty database, run:
 rails db:create
 ```
 
-1. Run Migrations
+4. Run Migrations
 
 Set up your database schema according to the current migration files:
 
@@ -100,7 +100,7 @@ Set up your database schema according to the current migration files:
 rails db:migrate
 ```
 
-1. Optional - Seed the Database:
+5. Optional - Seed the Database:
 
 If you have seed data, you can populate your database with this data using:
 
@@ -125,7 +125,7 @@ Confirm that the modified migrations are compatible with your existing data or b
 cd proj6-niners
 ```
 
-1. Run Migrations
+2. Run Migrations
 
 Apply the updated migrations to your database
 
@@ -135,7 +135,7 @@ rails db:migrate
 
 This command will run any new migrations or changes to existing migrations since the last time you ran db:migrate.
 
-1. Optional - Revert and Re-Apply Migrations
+3. Optional - Revert and Re-Apply Migrations
 
 If necessary, you can revert to a previous migration and re-apply the migrations
 

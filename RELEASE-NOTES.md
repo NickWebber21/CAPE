@@ -62,6 +62,10 @@ on their work and the Evaluations that they wrote.
 The full-length labels for the evaluation questions, intially only shown on the Evaluation form, are now visible in a full table
 that can be easily digested by a user.
 
+#### Overall Content Changes
+
+Minor changes were made in various places to update logic, include more information, and add styling.
+
 
 ### CanCanCan
 
