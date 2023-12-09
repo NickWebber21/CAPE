@@ -34,7 +34,7 @@
 
   <div class="field">
   <% if @course == nil%>
-    <%= f.collection_select :course_id, Course.all, :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
+    <%= f.collection_select :course_id, Course.where.not(name: 'Admin'), :id, :name, { prompt: 'Select a course' }, { class: 'drop-down', required: true } %>
   <%else%>
     <%= f.hidden_field :course_id, value: @course.id %>
     <strong> Course: </strong><%= @course.name%>

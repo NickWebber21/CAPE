@@ -48,7 +48,8 @@ class PresentationsController < ApplicationController
       "overall_score" => "Overall Score"
     }
 
-    @student_count = User.where(course: current_user.course, role: 'Student').count
+    authors_count = @presentation.authors.count
+    @student_count = User.where(course: current_user.course, role: 'Student').count - authors_count
   end
 
   # GET /presentations/new

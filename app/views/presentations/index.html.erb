@@ -4,7 +4,7 @@
 
 <% if user_signed_in? %>
 
-<% if current_user.role == 'Instructor' %>
+<% if current_user.role == 'Instructor' or current_user.role == 'TA'%>
     <%= link_to "New presentation", new_presentation_path, class: "presentations-edit-button presentation-button" %>
     <br>
   <% end %>
